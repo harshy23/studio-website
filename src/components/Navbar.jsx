@@ -40,7 +40,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-white ${isScrolled
           ? 'py-4 bg-white-bg/60'
           : 'py-6 bg-transparent'
           }`}
