@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: initial; /* Lenis requires initial scroll-behavior */
+    background-color: #050508;
+    background-image:
+      radial-gradient(circle at 12% 12%, rgba(124, 132, 255, 0.14), transparent 24%),
+      radial-gradient(circle at 78% 18%, rgba(255, 117, 141, 0.12), transparent 22%);
+    color: #F3F4F6;
+    overflow-x: hidden;
+  }
+  
+  body {
+    @apply font-sans antialiased selection:bg-primary selection:text-white;
+    background: transparent;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050508;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1B1B2B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366F1;
+}
+
+/* Lenis Specific Styles for Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Utilities */
+.glass {
+  background: rgba(13, 13, 21, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(27, 27, 43, 0.6);
+}
+
+.glass-accent {
+  background: rgba(255, 117, 141, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 117, 141, 0.18);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-primary-light;
+}
+
+.text-gradient-purple {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-light via-secondary to-secondary-light;
+}
+
+/* Grid overlay background */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(27, 27, 43, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 27, 43, 0.2) 1px, transparent 1px);
+}
+
+/* Custom cursor overrides for mobile */
+@media (max-width: 1024px) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
