@@ -20,7 +20,7 @@ export default function AboutPreview() {
         onMouseLeave={() => setIsHovered(false)}
         className="group relative flex flex-col items-center cursor-pointer select-none py-2"
       >
-        <div className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 flex items-center justify-center transition-transform duration-300">
+        <div className="relative w-64 sm:w-72 md:w-96 h-64 sm:h-72 md:h-96 flex items-center justify-center transition-transform duration-300">
           <img
             src={sudoResting}
             alt="About - Sudo Resting"

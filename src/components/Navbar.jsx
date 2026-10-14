@@ -40,18 +40,18 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-white ${isScrolled
-          ? 'py-4 bg-white-bg/60'
-          : 'py-6 bg-transparent'
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
+          ? 'py-1 bg-white'
+          : 'py-1 bg-white'
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center group">
             <img
               src={LogoPrimary}
               alt="Studio Biscut logo"
-              className="w-14 h-12 rounded-3xl bg-white/5 border border-white/10 object-cover shadow-lg shadow-primary/10"
+              className="w-14 h-12 rounded-2xl bg-white/5 border border-white/10 object-cover shadow-lg shadow-primary/10"
             />
           </Link>
 

@@ -11,14 +11,14 @@ import photshop from './application_logo/photshop.png';
 import premerpro from './application_logo/premerpro.png';
 import procreate from './application_logo/procreate.png';
 import procreate2 from './application_logo/procreate2.png';
-import sudoAnimation from './SudoAnimation.gif';
+// import sudoAnimation from './SudoAnimation.gif';
 import sudoCard from './SUDO CARD.png';
 import sudoBefore from './before_click_sudo.png';
 import sudoAfter from './after_click_sudo.png';
 import vineetBefore from './before_click_vineet.png';
 import vineetAfter from './after_click_vineet..png';
 import vineetCard from './VINEET CARD.png';
-import vineetAnimation from './VineetAnimation.gif';
+// import vineetAnimation from './VineetAnimation.gif';
 import instagram from './Instagram.png';
 import linkdin from './Linkedin.png';
 import mail from './Mail.png';
@@ -30,7 +30,12 @@ import sudoHover from './home_page_img/Sudo Hover.png';
 import backformImg from './conatct_us_logo/backform.jpg';
 import behindChaiDipImg from './conatct_us_logo/behind_chai_dip.png';
 import formDividerImg from './conatct_us_logo/form_divider.png';
-
+import vatsal from './about_us_img/associates/vatsal.png';
+import vatsalHover from './about_us_img/associates/vatsal_onhover.png';
+import shubham from './about_us_img/associates/shubham.png';
+import shubhamHover from './about_us_img/associates/shubham_onhover.png';
+import vatsalCard from './about_us_img/associates/vatsal_card.png';
+import shubhamCard from './about_us_img/associates/shubham_card.png';
 const startingLogoFrameModules = import.meta.glob(
   './home_page_img/starting_logo/reveal 1/*.png',
   { eager: true, import: 'default' }
@@ -61,13 +66,13 @@ export {
   premerpro,
   procreate,
   procreate2,
-  sudoAnimation,
+  // sudoAnimation,
   sudoCard,
   sudoBefore,
   sudoAfter,
   vineetBefore,
   vineetAfter,
-  vineetAnimation,
+  // vineetAnimation,
   vineetCard,
   instagram,
   linkdin,
@@ -79,6 +84,12 @@ export {
   backformImg,
   behindChaiDipImg,
   formDividerImg,
+  vatsal,
+  vatsalHover,
+  shubham,
+  shubhamHover,
+  vatsalCard,
+  shubhamCard,
 };
 
 

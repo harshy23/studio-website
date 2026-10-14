@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projects, categories } from '../data/projects';
@@ -98,13 +99,13 @@ export default function Projects() {
                     </div>
 
                     <Magnetic strength={0.3}>
-                      <a
-                        href={project.link}
+                      <Link
+                        to={project.link || `/work/${project.slug || project.id}`}
                         className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-white hover:bg-primary hover:border-primary hover:rotate-45 transition-all duration-300"
                         aria-label={`View details of ${project.title}`}
                       >
                         <ArrowUpRight className="w-5 h-5" />
-                      </a>
+                      </Link>
                     </Magnetic>
                   </div>
                 </div>

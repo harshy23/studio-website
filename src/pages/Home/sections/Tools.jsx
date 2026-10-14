@@ -48,7 +48,7 @@ export default function Tools() {
                   key={`${i}-${logo.id}`}
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-8 md:h-12 w-auto object-contain mx-8 md:mx-20 opacity-80 hover:opacity-100 transition-opacity filter drop-shadow-md"
+                  className="h-10 md:h-16 w-auto object-contain mx-8 md:mx-20 opacity-100 transition-opacity filter drop-shadow-md"
                 />
               ))}
             </div>

@@ -15,12 +15,12 @@ export default function ContactForm() {
   const [responseMessage, setResponseMessage] = useState('');
   const [currentFrame, setCurrentFrame] = useState(0);
 
-  // Loop animation for Chai Dip frames (approx 24 FPS)
+  // Loop animation for Chai Dip frames (slightly slower, approx 13-14 FPS)
   useEffect(() => {
     if (!chaiDipFrames || chaiDipFrames.length === 0) return;
     const timer = setInterval(() => {
       setCurrentFrame((prev) => (prev + 1) % chaiDipFrames.length);
-    }, 42);
+    }, 75);
     return () => clearInterval(timer);
   }, []);
 

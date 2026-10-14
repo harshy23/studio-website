@@ -1,7 +1,7 @@
 import AboutHero from './sections/AboutHero';
 import TeamProfiles from './sections/TeamProfiles';
 import FaqSection from './sections/FaqSection';
-
+import AssoProfile from './sections/AssociatesProfile';
 export default function About() {
   return (
     <main
@@ -11,6 +11,7 @@ export default function About() {
     >
       <AboutHero />
       <TeamProfiles />
+      <AssoProfile />
       {/* <FaqSection /> */}
     </main>
   );

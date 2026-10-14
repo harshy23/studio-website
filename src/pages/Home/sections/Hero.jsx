@@ -37,7 +37,7 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
   return (
     <section
       id="home-hero"
-      className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black text-white"
+      className="w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black text-white"
     >
       {!isAnimationComplete ? (
         /* Starting Frame Animation */
@@ -60,7 +60,7 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="relative w-full h-full flex items-center justify-center group cursor-pointer"
-          onClick={handleWatchIntro}
+        // onClick={handleWatchIntro}
         >
           {introVideoSrc && !hasVideoError ? (
             <video
@@ -69,7 +69,7 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
               loop
               muted
               // playsInline
-              Play
+
               // volume={1}
               onError={() => setHasVideoError(true)}
               className="absolute inset-0 w-full h-full object-cover"

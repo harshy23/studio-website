@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function Intro() {
   return (
     <section id="intro" className="w-full relative overflow-hidden bg-transparent text-black">
-      <div className="max-w-5xl mx-auto px-6 text-center">
+      <div className="max-w-5xl mx-auto px-6 text-center pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
