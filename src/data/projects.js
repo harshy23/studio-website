@@ -3,20 +3,22 @@ import project2 from '../logos/application_logo/slide show 2.png';
 import project3 from '../logos/application_logo/slide show 3.png';
 import project4 from '../logos/application_logo/slide show 4.png';
 import project5 from '../logos/application_logo/slide show 5.png';
+import { LogoPrimary } from '../logos';
 import { fatherDayAssets } from '../logos/work/project_father_day';
 
 export const projects = [
   {
     id: 1,
-    slug: 'halwa-1',
-    title: 'Halwa 1',
+    slug: 'groww-fathers-day',
+    title: 'Groww - Father’s Day',
     projectTitle: 'Happy Fathers Day',
     client: 'Client - Groww',
     category: '2D Animation',
     tags: ['2D Animation', 'Short Film'],
-    image: project1,
+    image: fatherDayAssets.Project1,
     year: '2026',
-    link: '/work/halwa-1',
+    link: '/work/groww-fathers-day',
+    vimeoVideo: 'https://player.vimeo.com/video/1231625373?h=ee52492de9',
     bannerImage: fatherDayAssets.banner,
     description:
       'A heartwarming animated short film ad where a young boy narrates a speech during his school assembly, describing his father as his best buddy. As he shares cherished memories of love, laughter, guidance, and everyday adventures, vibrant animated visuals bring each moment to life, celebrating the beautiful bond between a father and child.',
@@ -70,7 +72,8 @@ export const projects = [
     client: 'Studio Original',
     category: 'Motion Design',
     tags: ['Motion Design'],
-    image: project2,
+    image: LogoPrimary,
+    isBakingInProgress: true,
     year: '2025',
     link: '/work/puri-1',
     description: 'An imaginative animation exploring character expression and dynamic flow.',
@@ -83,7 +86,8 @@ export const projects = [
     client: 'Commercial',
     category: 'Commercial',
     tags: ['Visual Concept'],
-    image: project3,
+    image: LogoPrimary,
+    isBakingInProgress: true,
     year: '2026',
     link: '/work/halwa-2',
     description: 'A stylistic visual campaign crafted with hand-drawn frames and storytelling.',
@@ -96,7 +100,8 @@ export const projects = [
     client: 'Brand Story',
     category: '3D Art',
     tags: ['3D Story'],
-    image: project1,
+    image: LogoPrimary,
+    isBakingInProgress: true,
     year: '2026',
     link: '/work/puri-2',
     description: 'Creative visual exploration blending stylized form and cinematic pacing.',
@@ -109,7 +114,8 @@ export const projects = [
     client: 'Studio Yum',
     category: 'Short Film',
     tags: ['Indie IP'],
-    image: project2,
+    image: LogoPrimary,
+    isBakingInProgress: true,
     year: '2025',
     link: '/work/halwa-3',
     description: 'Original character adventures in a quirky handcrafted world.',
@@ -122,7 +128,8 @@ export const projects = [
     client: 'Music & Sound',
     category: 'Sound & Visuals',
     tags: ['Original Music'],
-    image: project3,
+    image: LogoPrimary,
+    isBakingInProgress: true,
     year: '2026',
     link: '/work/puri-3',
     description: 'An audiovisual journey synchronized with playful sound design.',

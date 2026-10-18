@@ -17,11 +17,13 @@ export default function WorkHero() {
         </div> */}
 
         {/* Work media - Full Width */}
-        <div className="w-full relative">
-          <img
-            src={workVideo}
-            alt="Work Showcase"
-            className="w-full h-auto object-cover max-h-[600px] border-y border-white/10"
+        <div className="w-full relative overflow-hidden aspect-video max-h-[600px] border-y border-white/10 bg-black flex items-center justify-center">
+          <iframe
+            title="vimeo-player"
+            src="https://player.vimeo.com/video/1236850398?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0"
+            className="w-full h-full border-0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowFullScreen
           />
         </div>
       </div>

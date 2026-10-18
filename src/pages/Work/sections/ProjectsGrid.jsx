@@ -70,17 +70,30 @@ export default function ProjectsGrid() {
                   aria-label={`View details of ${project.title}`}
                   className="block w-full h-full relative"
                 >
-                  {/* Image */}
+                  {/* Image / Placeholder */}
                   <div className="absolute inset-0 overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter saturate-[0.8] brightness-[0.7] group-hover:brightness-[0.5]"
-                    />
+                    {project.isBakingInProgress || project.id !== 1 ? (
+                      <div className="w-full h-full bg-[#121216] flex flex-col items-center justify-center p-6 text-center select-none group-hover:scale-105 transition-transform duration-700">
+                        <img
+                          src={project.image}
+                          alt="Studio Biskoot"
+                          className="w-24 sm:w-28 md:w-32 h-auto max-h-[50%] object-contain filter grayscale contrast-125 brightness-95 opacity-85 group-hover:opacity-100 transition-opacity"
+                        />
+                        <p className="mt-3 text-xs sm:text-sm font-fredoka font-medium tracking-wider text-gray-300 lowercase grayscale">
+                          baking in progress..
+                        </p>
+                      </div>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter saturate-[0.8] brightness-[0.7] group-hover:brightness-[0.5]"
+                      />
+                    )}
                   </div>
 
                   {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-80 pointer-events-none" />
 
                   {/* Corner Year Badge */}
                   <div className="absolute top-6 right-6 py-1 px-3 glass rounded-md text-[10px] uppercase font-bold text-white tracking-widest">

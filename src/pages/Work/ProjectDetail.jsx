@@ -57,7 +57,38 @@ export default function ProjectDetail() {
       {/* ─────────────────────────────────────────────────────────────
           1. TOP HERO BANNER
       ───────────────────────────────────────────────────────────── */}
-      {(project.bannerImage || project.image) && (
+      {project.vimeoVideo ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease }}
+          className="w-full relative overflow-hidden bg-black border-b border-gray-100 aspect-video max-h-[520px] sm:max-h-[620px] lg:max-h-[720px] flex items-center justify-center"
+        >
+          <iframe
+            title="vimeo-player"
+            src={`${project.vimeoVideo}${project.vimeoVideo.includes('?') ? '&' : '?'}autoplay=1&loop=1&muted=1&autopause=0`}
+            className="w-full h-full border-0"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            allowFullScreen
+          />
+        </motion.div>
+      ) : (project.isBakingInProgress || project.id !== 1) ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease }}
+          className="w-full relative overflow-hidden bg-[#121216] border-b border-gray-100 py-20 flex flex-col items-center justify-center text-center select-none"
+        >
+          <img
+            src={project.image}
+            alt="Studio Biskoot"
+            className="w-28 sm:w-36 md:w-44 h-auto object-contain filter grayscale contrast-125 brightness-95 opacity-85"
+          />
+          <p className="mt-4 text-sm sm:text-base font-fredoka font-medium tracking-wider text-gray-300 lowercase grayscale">
+            baking in progress..
+          </p>
+        </motion.div>
+      ) : (project.bannerImage || project.image) && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

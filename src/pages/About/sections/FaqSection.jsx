@@ -15,12 +15,12 @@ export default function FaqSection() {
           font-bold
           tracking-wide
           text-[#302C2D]
-          text-[36px]
-          sm:text-[40px]
-          md:text-[44px]
+          text-[42px]
+          sm:text-[48px]
+          md:text-[54px]
           leading-none
-          mb-5
-          sm:mb-6
+          mb-6
+          sm:mb-8
         "
       >
         FAQ
@@ -34,8 +34,8 @@ export default function FaqSection() {
         className="
           relative
           w-full
-          max-w-[900px]
-          h-[560px]
+          max-w-[1050px]
+          h-[660px]
           mx-auto
         "
       >
@@ -47,10 +47,10 @@ export default function FaqSection() {
         <div
           className="
             absolute
-            left-[12%]
+            left-[10%]
             top-[20px]
-            w-[44%]
-            h-[390px]
+            w-[46%]
+            h-[460px]
             z-10
             rotate-[0deg]
           "
@@ -79,19 +79,19 @@ export default function FaqSection() {
               right-[12%]
               text-white
               font-fredoka
-              rotate-[-9deg]
+              rotate-[-10.5deg]
             "
           >
 
             {/* FAQ 1 */}
-            <div className="mb-6">
+            <div className="mb-7">
               <h3
                 className="
-                  text-[12px]
-                  sm:text-[13px]
-                  md:text-[14px]
+                  text-[14px]
+                  sm:text-[15px]
+                  md:text-[17px]
                   font-bold
-                  leading-[1.15]
+                  leading-[1.2]
                   mb-2
                 "
               >
@@ -101,11 +101,11 @@ export default function FaqSection() {
 
               <p
                 className="
-                  text-[11px]
-                  sm:text-[12px]
-                  md:text-[13px]
+                  text-[13px]
+                  sm:text-[14px]
+                  md:text-[15px]
                   font-normal
-                  leading-[1.3]
+                  leading-[1.4]
                 "
               >
                 A. Yes. Just drop a word at{' '}
@@ -124,11 +124,11 @@ export default function FaqSection() {
             <div>
               <h3
                 className="
-                  text-[12px]
-                  sm:text-[13px]
-                  md:text-[14px]
+                  text-[14px]
+                  sm:text-[15px]
+                  md:text-[17px]
                   font-bold
-                  leading-[1.15]
+                  leading-[1.2]
                   mb-2
                 "
               >
@@ -138,11 +138,11 @@ export default function FaqSection() {
 
               <p
                 className="
-                  text-[11px]
-                  sm:text-[12px]
-                  md:text-[13px]
+                  text-[13px]
+                  sm:text-[14px]
+                  md:text-[15px]
                   font-normal
-                  leading-[1.3]
+                  leading-[1.4]
                 "
               >
                 A. No. We specialize in 2D
@@ -161,10 +161,10 @@ export default function FaqSection() {
         <div
           className="
             absolute
-            left-[43%]
+            left-[49%]
             top-[170px]
-            w-[45%]
-            h-[390px]
+            w-[47%]
+            h-[460px]
             z-20
             rotate-[16deg]
           "
@@ -198,14 +198,14 @@ export default function FaqSection() {
           >
 
             {/* FAQ 3 */}
-            <div className="mb-6">
+            <div className="mb-7">
               <h3
                 className="
-                  text-[12px]
-                  sm:text-[13px]
-                  md:text-[14px]
+                  text-[14px]
+                  sm:text-[15px]
+                  md:text-[17px]
                   font-bold
-                  leading-[1.15]
+                  leading-[1.2]
                   mb-2
                 "
               >
@@ -214,11 +214,11 @@ export default function FaqSection() {
 
               <p
                 className="
-                  text-[11px]
-                  sm:text-[12px]
-                  md:text-[13px]
+                  text-[13px]
+                  sm:text-[14px]
+                  md:text-[15px]
                   font-normal
-                  leading-[1.3]
+                  leading-[1.4]
                 "
               >
                 A. We're not hiring at the moment, but
@@ -241,11 +241,11 @@ export default function FaqSection() {
             <div>
               <h3
                 className="
-                  text-[12px]
-                  sm:text-[13px]
-                  md:text-[14px]
+                  text-[14px]
+                  sm:text-[15px]
+                  md:text-[17px]
                   font-bold
-                  leading-[1.15]
+                  leading-[1.2]
                   mb-2
                 "
               >
@@ -255,11 +255,11 @@ export default function FaqSection() {
 
               <p
                 className="
-                  text-[11px]
-                  sm:text-[12px]
-                  md:text-[13px]
+                  text-[13px]
+                  sm:text-[14px]
+                  md:text-[15px]
                   font-normal
-                  leading-[1.3]
+                  leading-[1.4]
                 "
               >
                 A. No, we are not offering any internships

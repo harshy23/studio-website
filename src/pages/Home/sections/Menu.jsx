@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -14,64 +14,56 @@ const CARDS = [
     id: 'expertise',
     img: rect2,
     label: 'Our Expertise',
-    accentColor: '#FF7B8B',
-    modal: {
-      title: 'Our Expertise',
-      subtitle: 'What we are great at',
-      body: [
-        'We blend artistry with storytelling to craft animations that resonate emotionally and communicate ideas with clarity.',
-        'Our team specialises in character-driven narratives, motion graphics, and visual development.',
-        'From concept ideation to final delivery, we maintain an uncompromising eye for detail.',
-      ],
-      tags: [
-        'Character Design',
-        'Visual Development',
-        'Motion Graphics',
-        'Storyboarding',
-      ],
-    },
+    bgColor: '#FF6B7A', // Coral pink
+    type: 'list',
+    items: [
+      '2D Hand-Drawn Animation',
+      'Motion Graphics',
+      'Illustrations & Posters',
+      '2D FX Animation',
+    ],
   },
   {
     id: 'animation',
     img: rect1,
     label: 'Animation Production',
-    accentColor: '#7B8BFF',
-    modal: {
-      title: 'Animation Production',
-      subtitle: 'Full-pipeline animation studio',
-      body: [
-        'Studio Biskoot handles end-to-end animation production from storyboarding to compositing and sound-sync.',
-        "We work across 2D frame-by-frame, cut-out, and hybrid styles tailored to each project's audience.",
-        'Our pipeline is lean, collaborative, and built for both indie projects and commercial campaigns.',
-      ],
-      tags: [
-        '2D Animation',
-        'Frame-by-Frame',
-        'Compositing',
-        'Sound Design',
-      ],
-    },
+    bgColor: '#828EFA', // Periwinkle blue
+    type: 'pipeline',
+    headerText:
+      'We can take a project from an early idea to a finished piece, handling the creative and production stages along the way.',
+    columns: [
+      {
+        title: 'Pre-Production',
+        items: [
+          'Script',
+          'Concept Art',
+          'Storyboards',
+          'Character Design',
+          'Animatic',
+        ],
+      },
+      {
+        title: 'Production',
+        items: ['Animation', 'Background Art'],
+        secondSection: {
+          title: 'Post-Production',
+          items: ['Sound Design', 'Compositing'],
+        },
+      },
+    ],
   },
   {
     id: 'whatwedo',
     img: rect3,
     label: 'What We Do',
-    accentColor: '#FFB74D',
-    modal: {
-      title: 'What We Do',
-      subtitle: 'Services & deliverables',
-      body: [
-        'We create animated content spanning short films, branded content, music videos, and social-media reels.',
-        'Our services also include concept art, illustration, style-frame development, and art direction.',
-        'Whether you need a 15-second loop or a 10-minute film, we bring the same craft to every frame.',
-      ],
-      tags: [
-        'Short Films',
-        'Brand Content',
-        'Explainers',
-        'Illustration',
-      ],
-    },
+    bgColor: '#FDB642', // Golden warm yellow
+    type: 'list',
+    items: [
+      'Advertisements',
+      'Music Videos',
+      'Social Media Content',
+      'Graphic Novels and Illustrations',
+    ],
   },
 ];
 
@@ -86,83 +78,109 @@ function CardModal({ card, onClose }) {
           transition={{ duration: 0.2 }}
           className="fixed inset-0 z-[500] flex items-center justify-center p-4 sm:p-8"
           style={{
-            background: 'rgba(5,5,8,0.88)',
-            backdropFilter: 'blur(10px)',
+            background: 'rgba(215, 222, 245, 0.75)',
+            backdropFilter: 'blur(8px)',
           }}
           onClick={onClose}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 24 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 24 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{
               duration: 0.28,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-[620px] rounded-[36px] sm:rounded-[44px] shadow-2xl overflow-hidden p-8 sm:p-12 md:p-14 text-white font-fredoka"
             style={{
-              background: '#0D0D15',
-              border: `1.5px solid ${card.accentColor}33`,
+              backgroundColor: card.bgColor,
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className="h-1.5 w-full"
-              style={{ background: card.accentColor }}
-            />
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-5 right-5 sm:top-7 sm:right-7 w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all cursor-pointer z-20"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
+            </button>
 
-            <div className="p-7 sm:p-9">
-              <div className="flex items-start justify-between mb-6">
-                <div>
+            {/* Content for Simple List Cards (Pink & Yellow) */}
+            {card.type === 'list' && (
+              <div className="flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8 py-4 sm:py-6">
+                {card.items.map((item, index) => (
                   <p
-                    className="text-xs font-fredoka font-semibold uppercase tracking-[0.22em] mb-1"
-                    style={{ color: card.accentColor }}
+                    key={index}
+                    className="text-[20px] sm:text-[23px] md:text-[25px] font-medium tracking-wide text-white leading-tight"
                   >
-                    {card.modal.subtitle}
+                    {item}
                   </p>
+                ))}
+              </div>
+            )}
 
-                  <h2 className="text-3xl sm:text-4xl font-fredoka font-bold text-white leading-tight">
-                    {card.modal.title}
-                  </h2>
+            {/* Content for Blue Card (Pipeline: Pre, Production, Post) */}
+            {card.type === 'pipeline' && (
+              <div className="flex flex-col text-white">
+                {/* Intro summary sentence */}
+                <p className="text-center text-[15px] sm:text-[17px] md:text-[18px] font-normal leading-relaxed max-w-[500px] mx-auto mb-6 sm:mb-8">
+                  {card.headerText}
+                </p>
+
+                {/* Subtle divider line like in artwork */}
+                <div className="w-32 sm:w-44 h-[1.5px] bg-white/40 mx-auto mb-7 sm:mb-9 rounded-full" />
+
+                {/* 2-Column Layout */}
+                <div className="grid grid-cols-2 gap-4 sm:gap-8 px-2 sm:px-6">
+                  {/* Column 1: Pre-Production */}
+                  <div>
+                    <h3 className="text-[17px] sm:text-[20px] font-medium mb-2 tracking-wide">
+                      {card.columns[0].title}
+                    </h3>
+                    <ul className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[16px] font-normal text-white/95">
+                      {card.columns[0].items.map((subItem, idx) => (
+                        <li key={idx} className="flex items-center gap-1.5">
+                          <span className="text-xs opacity-80">•</span>
+                          <span>{subItem}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Column 2: Production + Post-Production */}
+                  <div className="space-y-5 sm:space-y-6">
+                    <div>
+                      <h3 className="text-[17px] sm:text-[20px] font-medium mb-2 tracking-wide">
+                        {card.columns[1].title}
+                      </h3>
+                      <ul className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[16px] font-normal text-white/95">
+                        {card.columns[1].items.map((subItem, idx) => (
+                          <li key={idx} className="flex items-center gap-1.5">
+                            <span className="text-xs opacity-80">•</span>
+                            <span>{subItem}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-[17px] sm:text-[20px] font-medium mb-2 tracking-wide">
+                        {card.columns[1].secondSection.title}
+                      </h3>
+                      <ul className="space-y-1 sm:space-y-1.5 text-[14px] sm:text-[16px] font-normal text-white/95">
+                        {card.columns[1].secondSection.items.map((subItem, idx) => (
+                          <li key={idx} className="flex items-center gap-1.5">
+                            <span className="text-xs opacity-80">•</span>
+                            <span>{subItem}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-
-                <button
-                  onClick={onClose}
-                  className="ml-4 flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
-
-              <div className="space-y-4 mb-8">
-                {card.modal.body.map((para, i) => (
-                  <p
-                    key={i}
-                    className="text-sm sm:text-[15px] leading-relaxed font-sans"
-                    style={{ color: '#B8B8CC' }}
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {card.modal.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-xs font-fredoka font-semibold rounded-full"
-                    style={{
-                      background: `${card.accentColor}18`,
-                      color: card.accentColor,
-                      border: `1px solid ${card.accentColor}40`,
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -180,16 +198,16 @@ export default function MenuSection() {
         className="relative w-full overflow-hidden bg-white"
       >
         {/* MENU TITLE */}
-        <div className="pt-8 sm:pt-9 md:pt-10">
+        <div className="pt-10 sm:pt-12 md:pt-14">
           <h2
             className="
               text-center
               font-fredoka
               font-medium
               text-[#302C2D]
-              text-[32px]
-              sm:text-[36px]
-              md:text-[40px]
+              text-[40px]
+              sm:text-[46px]
+              md:text-[52px]
               leading-none
             "
           >
@@ -203,7 +221,7 @@ export default function MenuSection() {
             className="
               relative
               w-full
-              max-w-[719px]
+              max-w-[900px]
               aspect-[719/439]
             "
           >
@@ -265,7 +283,10 @@ export default function MenuSection() {
               />
             </motion.div>
 
-            {/* blue */}
+            {/* =========================
+    BLUE CARD
+    Animation Production
+========================== */}
             <motion.div
               className="
     absolute

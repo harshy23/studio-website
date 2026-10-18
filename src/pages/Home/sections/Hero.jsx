@@ -62,28 +62,15 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
           className="relative w-full h-full flex items-center justify-center group cursor-pointer"
         // onClick={handleWatchIntro}
         >
-          {introVideoSrc && !hasVideoError ? (
-            <video
-              src={introVideoSrc}
-              autoPlay
-              loop
-              muted
-              // playsInline
-
-              // volume={1}
-              onError={() => setHasVideoError(true)}
-              className="absolute inset-0 w-full h-full object-cover"
+          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-auto">
+            <iframe
+              title="vimeo-player"
+              src="https://player.vimeo.com/video/1236850398?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0&background=1"
+              className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              allowFullScreen
             />
-          ) : (
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-stone-900 to-black flex items-center justify-center">
-              <div className="flex flex-col items-center gap-3 text-center">
-                <span className="text-xs uppercase font-fredoka font-bold tracking-widest text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
-                  Intro Video Playing (Loop)
-                </span>
-                <p className="text-lg font-fredoka text-gray-300">Click anywhere to watch with full audio</p>
-              </div>
-            </div>
-          )}
+          </div>
 
           {/* Subtle Overlay gradient for contrast */}
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />

@@ -2,7 +2,7 @@ import banner from './stills/3.png';
 import conceptExploration from './concept_explantion.png';
 import kidCharacter from './charachter/kid.jpg';
 import fatherCharacter from './charachter/father.jpg';
-
+import Project1 from './stills/3.png';
 import sb1 from './story_board/1.png';
 import sb2 from './story_board/2.png';
 import sb3 from './story_board/3.png';
@@ -27,6 +27,7 @@ import still12 from './stills/12.png';
 export const fatherDayAssets = {
   banner,
   conceptExploration,
+  Project1,
   characterSheets: [
     { id: 'kid', name: 'Kid Character Sheet', image: kidCharacter },
     { id: 'father', name: 'Father Character Sheet', image: fatherCharacter },

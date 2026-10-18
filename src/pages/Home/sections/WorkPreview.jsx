@@ -34,7 +34,7 @@ export default function WorkPreview() {
               }`}
           />
         </div>
-        <h2 className="mt-3 font-GochiHand text-4xl sm:text-5xl md:text-6xl font-bold text-[#1a1a1a] tracking-wider transition-colors duration-300 ">
+        <h2 className="mt-3 font-GochiHand text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-wider transition-colors duration-300 ">
           WORK
         </h2>
       </Link>
