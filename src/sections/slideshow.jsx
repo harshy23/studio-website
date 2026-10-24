@@ -79,7 +79,7 @@ export default function SlideshowSection() {
     setErrorMessage('');
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/contact/', formData);
+      const response = await axios.post('https://studio-biskoot-backend.onrender.com/api/contact/', formData);
       if (response.status === 201 || response.status === 200) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
