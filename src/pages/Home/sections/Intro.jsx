@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Bold } from 'lucide-react';
 
 export default function Intro() {
   return (
@@ -14,13 +15,13 @@ export default function Intro() {
 
 
           <p className=" font-fredoka text-lg sm:text-xl leading-relaxed max-w-3xl">
-            Studio Biskoot is a 2D animation studio from India, making hand-drawn films, illustrations, and stories with a whole lot of heart.<br /><br />
+            <b>Studio Biskoot</b> is a <b>2D animation studio</b> from India, making <b>hand-drawn films, illustrations,</b> and <b>stories</b> with a whole lot of heart.<br /><br />
 
             We love expressive characters, silly little faces, everyday adventures, and finding a bit of magic in the ordinary.
             We draw things, make them move, and occasionally make them do things they probably shouldn’t.
-            From tiny doodles to big stories, we bring ideas to life one frame at a time.<br /><br />
+            From tiny doodles to big stories, we bring ideas to life ... one frame at a time :)<br /><br />
 
-            Welcome to Studio Biskoot
+            <b>Welcome to Studio Biskoot</b>
           </p>
         </motion.div>
       </div>

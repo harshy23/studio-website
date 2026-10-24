@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -195,19 +195,19 @@ export default function MenuSection() {
     <>
       <section
         id="menu"
-        className="relative w-full overflow-hidden bg-white"
+        className="relative w-full overflow-hidden bg-white pb-6"
       >
         {/* MENU TITLE */}
         <div className="pt-10 sm:pt-12 md:pt-14">
           <h2
             className="
               text-center
-              font-fredoka
+              font-GochiHand
               font-medium
               text-[#302C2D]
-              text-[40px]
-              sm:text-[46px]
-              md:text-[52px]
+              text-[50px]
+              sm:text-[56px]
+              md:text-[62px]
               leading-none
             "
           >
@@ -221,7 +221,7 @@ export default function MenuSection() {
             className="
               relative
               w-full
-              max-w-[900px]
+              max-w-[1050px]
               aspect-[719/439]
             "
           >

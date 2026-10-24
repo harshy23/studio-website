@@ -115,11 +115,37 @@ export default function ContactHero({ onOpenForm }) {
 
         {/* Bottom Social Media Icons */}
         <div className="flex w-full justify-end items-end gap-6 pt-12">
-          <img
-            src={socialIcons}
-            alt="Social Media"
-            className="w-60 h-auto object-contain drop-shadow-md cursor-pointer hover:opacity-80 transition-opacity"
-          />
+          <div className="relative flex items-end w-60 drop-shadow-md">
+            <img
+              src={socialIcons}
+              alt="Social Media"
+              className="w-full h-auto object-contain select-none pointer-events-none"
+            />
+            <div className="absolute inset-0 flex">
+              <a
+                href="https://www.linkedin.com/company/studio-biskoot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="LinkedIn"
+                aria-label="Studio Biskoot LinkedIn"
+              />
+              <a
+                href="https://www.instagram.com/studiobiskoot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="Instagram"
+                aria-label="Studio Biskoot Instagram"
+              />
+              <a
+                href="mailto:hello@studiobiskoot.com"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="Email Us"
+                aria-label="Studio Biskoot Email"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

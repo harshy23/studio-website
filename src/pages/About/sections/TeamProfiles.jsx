@@ -10,24 +10,71 @@ import IntroCard from '../../../components/IntroCard';
 
 export const CHARACTER_CONFIGS = {
   sudo: {
-    name: 'Sudhanshu K.',
+    name: 'Sudhanshu Kanwar',
     role: 'Co-Founder/ Animation Director',
     description:
       "I'm Sudhanshu, a designer and animator storytelling through graphic narratives, animation, and live action. My creative toolkit includes skills in editing, photo and video.",
     bgColor: '#FF5C75',
     fps: 24,
-    shakeStartFrames: [20],
-    socialLinks: { linkedin: '#', email: '#', instagram: '#' },
+    // After Effects Orientation Keyframes: frames 14 to 52 (24 FPS)
+    orientationKeyframes: [
+      { frame: 14, rotateX: 0, rotateY: 0, rotate: 0 },
+      { frame: 15, rotateX: 0, rotateY: 0, rotate: 0 },
+      { frame: 16, rotateX: 0, rotateY: -0.1, rotate: 0 },
+      { frame: 17, rotateX: 0.1, rotateY: 0.2, rotate: -0.2 },
+      { frame: 18, rotateX: 0.3, rotateY: -0.3, rotate: 0.3 },
+      { frame: 19, rotateX: 0.6, rotateY: -0.4, rotate: -0.7 },
+      { frame: 20, rotateX: 0.1, rotateY: 0.2, rotate: -0.3 },
+      { frame: 21, rotateX: 0.7, rotateY: -0.4, rotate: -0.9 },
+      { frame: 22, rotateX: 0, rotateY: -0.1, rotate: -0.5 },
+      { frame: 23, rotateX: 0.9, rotateY: 0.1, rotate: -0.5 },
+      { frame: 24, rotateX: 1.2, rotateY: -1.1, rotate: 0.9 },
+      { frame: 25, rotateX: 1, rotateY: -1.1, rotate: -0.2 },
+      { frame: 26, rotateX: -0.9, rotateY: -0.6, rotate: -1.6 },
+      { frame: 27, rotateX: 0.2, rotateY: -0.2, rotate: 0.2 },
+      { frame: 28, rotateX: 0.6, rotateY: 0.2, rotate: 0.3 },
+      { frame: 29, rotateX: 0.2, rotateY: 0.5, rotate: 1.7 },
+      { frame: 30, rotateX: -0.9, rotateY: -0.4, rotate: 1 },
+      { frame: 31, rotateX: -0.1, rotateY: -1.5, rotate: 0.6 },
+      { frame: 32, rotateX: 0, rotateY: -0.8, rotate: 0 },
+      { frame: 33, rotateX: 0.5, rotateY: 1, rotate: -0.5 },
+      { frame: 34, rotateX: -0.7, rotateY: -0.3, rotate: 0.7 },
+      { frame: 35, rotateX: 1.6, rotateY: -0.1, rotate: 0.1 },
+      { frame: 36, rotateX: -1, rotateY: 0, rotate: -1 },
+      { frame: 37, rotateX: 0.2, rotateY: 0.5, rotate: 0.1 },
+      { frame: 38, rotateX: 0.2, rotateY: 1.3, rotate: 0.9 },
+      { frame: 39, rotateX: -0.9, rotateY: -1.4, rotate: -0.9 },
+      { frame: 40, rotateX: 0.6, rotateY: 0.6, rotate: 0.4 },
+      { frame: 41, rotateX: -0.9, rotateY: 0, rotate: -0.4 },
+      { frame: 42, rotateX: 0.1, rotateY: 0.1, rotate: -0.7 },
+      { frame: 43, rotateX: 0.9, rotateY: 1.6, rotate: 1.1 },
+      { frame: 44, rotateX: 0.1, rotateY: 0.2, rotate: 0.1 },
+      { frame: 45, rotateX: -0.6, rotateY: -0.4, rotate: -1.1 },
+      { frame: 46, rotateX: 0.2, rotateY: 0, rotate: -0.4 },
+      { frame: 47, rotateX: -0.1, rotateY: -0.7, rotate: -0.6 },
+      { frame: 48, rotateX: -0.5, rotateY: -0.6, rotate: 0.1 },
+      { frame: 49, rotateX: -0.2, rotateY: 0.4, rotate: -0.2 },
+      { frame: 50, rotateX: 0, rotateY: 0, rotate: 0.1 },
+      { frame: 51, rotateX: 0, rotateY: 0, rotate: 0 },
+      { frame: 52, rotateX: 0, rotateY: 0, rotate: 0 },
+    ],
+    socialLinks: { linkedin: '#', email: 'sud0draws@gmail.com', instagram: 'www.instagram.com/sud0draws' },
   },
   vineet: {
-    name: 'Vineet K.',
+    name: 'Vineet Karnani',
     role: 'Co-Founder/ Animation Director',
     description:
       'Hello! I am Vineet Karnani, an animation film director. I am passionate about using animation as a powerful medium to express my creative vision, explore new cinematic horizons and tell compelling stories.',
     bgColor: '#7B81FF',
     fps: 24,
-    shakeStartFrames: [12],
-    socialLinks: { linkedin: '#', email: '#', instagram: '#' },
+    // After Effects Position Keyframes: (960, 540) -> (960, 548) -> (960, 540)
+    // Relative displacement: frame 17: y=0, frame 19: y=8, frame 23: y=0
+    positionKeyframes: [
+      { frame: 22, x: 0, y: 0 },
+      { frame: 24, x: 0, y: 8 },
+      { frame: 28, x: 0, y: 0 },
+    ],
+    socialLinks: { linkedin: '#', email: 'vineetkarnani@gmail.com', instagram: 'www.instagram.com/vin0_0t' },
   },
 };
 
@@ -124,6 +171,7 @@ function SudoModal({ onClose }) {
         frames={sudoFrames}
         fps={config.fps}
         shakeStartFrames={config.shakeStartFrames}
+        orientationKeyframes={config.orientationKeyframes}
         onClose={onClose}
         socialLinks={config.socialLinks}
       />
@@ -153,6 +201,7 @@ function VineetModal({ onClose }) {
         frames={vineetFrames}
         fps={config.fps}
         shakeStartFrames={config.shakeStartFrames}
+        positionKeyframes={config.positionKeyframes}
         onClose={onClose}
         socialLinks={config.socialLinks}
       />

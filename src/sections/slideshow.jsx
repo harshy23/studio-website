@@ -6,56 +6,48 @@ import { CheckCircle, AlertTriangle, X } from 'lucide-react';
 import { LogoSecondary } from '../logos';
 
 // ============================================================================
-// BACKGROUND IMAGES
-// Provide 5-6 images for the slideshow here.
+// BACKGROUND PANORAMA
 // ============================================================================
-import contactBg1 from '../logos/application_logo/slide show 1.png';
-import contactBg2 from '../logos/application_logo/slide show 2.png';
-import contactBg3 from '../logos/application_logo/slide show 3.png';
-import contactBg4 from '../logos/application_logo/slide show 4.png';
-import contactBg5 from '../logos/application_logo/slide show 5.png';
+import longBgImage from '../logos/conatct_us_logo/LONG BG.PNG';
 import socialIcons from '../logos/social media icons.png';
 
-const backgroundImages = [
-  contactBg1,
-  contactBg2,
-  contactBg3,
-  contactBg4,
-  contactBg5,
-];
-
-// Slideshow transition duration in milliseconds
-const SLIDE_DURATION = 5000;
-
-function BackgroundSlideshow({ images }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, SLIDE_DURATION);
-    return () => clearInterval(timer);
-  }, [images]);
-
+function BackgroundSlideshow() {
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-      <AnimatePresence>
-        {images.map((img, index) => (
-          index === currentIndex && (
-            <motion.img
-              key={index}
-              src={img}
-              alt={`Background slide ${index + 1}`}
-              className="absolute w-full h-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
-              aria-hidden="true"
-            />
-          )
-        ))}
-      </AnimatePresence>
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none bg-black">
+      {/* 
+        Seamless loop: The panoramic image is placed twice side by side.
+        Each image has min-w-full and h-full object-cover so initially it covers the full window width & height.
+        Moving horizontally with ease 'linear' and repeat Infinity creates a seamless loop.
+      */}
+      <motion.div
+        className="flex h-full w-max"
+        animate={{
+          x: ['-50%', '0%'],
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: 'loop',
+            duration: 45,
+            ease: 'linear',
+          },
+        }}
+      >
+        <img
+          src={longBgImage}
+          alt="Panoramic Background Part 1"
+          className="h-full min-w-full object-cover object-left flex-shrink-0"
+          draggable={false}
+          aria-hidden="true"
+        />
+        <img
+          src={longBgImage}
+          alt="Panoramic Background Part 2"
+          className="h-full min-w-full object-cover object-left flex-shrink-0"
+          draggable={false}
+          aria-hidden="true"
+        />
+      </motion.div>
     </div>
   );
 }
@@ -108,7 +100,7 @@ export default function SlideshowSection() {
   return (
     <section id="contact" className="relative min-h-screen w-full font-fredoka overflow-hidden  text-white selection:bg-white">
       {/* Background Slideshow */}
-      <BackgroundSlideshow images={backgroundImages} />
+      <BackgroundSlideshow />
 
       {/* Subtle Overlay to ensure text readability against varying backgrounds */}
       {/* <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden="true" /> */}
@@ -133,11 +125,15 @@ export default function SlideshowSection() {
               hello@studiobiskoot.com
             </a>
             <p className="max-w-[250px] leading-snug font-medium text-right md:text-left">
-              506, Lodha Supremus,<br />
-              11th Road, MIDC, Andheri<br />
-              East, Mumbai,<br />
-              Maharashtra, 400093,<br />
-              India
+              506, Lodha Supremus,11th<br />
+              Road, MIDC, Andheri East,<br />
+              Mumbai,Maharashtra,<br />
+              400093,India<br /><br />
+
+
+              10 Aldrin Dr Mount <br />
+              Waverley 3149 Victoria, <br />
+              Australia<br />
             </p>
 
             {/* <button
@@ -161,10 +157,34 @@ export default function SlideshowSection() {
         {/* Bottom Center - Brand Logo */}
 
         {/* Bottom Right - Socials & Legal */}
-        <div className="flex w-full h-full justify-end items-end gap-6 pb-1 ml-60">
-          {/* Social Icons */}
-          <div className="flex gap-4 h-full items-end pb-1 ">
-            <img src={socialIcons} alt="Social Media" className="w-60 h-auto object-contain drop-shadow-md cursor-pointer hover:opacity-80 transition-opacity" />
+        <div className="flex w-full h-full justify-end items-end gap-6 pb-10 ml-60 mr-10">
+          {/* Social Icons with Links */}
+          <div className="relative flex items-end pb-1 w-48 drop-shadow-md">
+            <img src={socialIcons} alt="Social Media" className="w-full h-auto object-contain select-none pointer-events-none" />
+            <div className="absolute inset-0 flex">
+              <a
+                href="https://www.linkedin.com/company/studio-biskoot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="LinkedIn"
+                aria-label="Studio Biskoot LinkedIn"
+              />
+              <a
+                href="https://www.instagram.com/studiobiskoot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="Instagram"
+                aria-label="Studio Biskoot Instagram"
+              />
+              <a
+                href="mailto:hello@studiobiskoot.com"
+                className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                title="Email Us"
+                aria-label="Studio Biskoot Email"
+              />
+            </div>
           </div>
 
           {/* Legal Links */}

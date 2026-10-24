@@ -39,11 +39,11 @@ export default function AboutHero() {
           Who are we?
         </h3>
         <p className="text-dark font-fredoka text-lg sm:text-xl leading-relaxed mt-10 max-w-3xl">
-          We’re Studio Biskoot, an Indian animation studio bringing drawings to life through 2D hand-drawn animation and storytelling!<br /><br />
+          <b>We’re Studio Biskoot, an Indian animation studio bringing drawings to life through 2D hand-drawn animation and storytelling!<br /><br />
 
-          From films, animated commercials and promos to illustrations and motion graphics, we love making fun, expressive, and memorable things for brands, agencies, and organizations. One frame at a time, with a whole lot of heart!<br /><br />
+            From films, animated commercials and promos to illustrations and motion graphics, we love making fun, expressive, and memorable things for brands, agencies, and organizations. One frame at a time, with a whole lot of heart!<br /><br />
 
-          Our team is an eclectic bunch of animators, storytellers, and directors who are passionate about the art of animation. Whether it’s films, series, or commercials, we love crafting stories that stick with you long after the screen fades to black :)
+            Our team is an eclectic bunch of animators, storytellers, and directors who are passionate about the art of animation. Whether it’s films, series, or commercials, we love crafting stories that stick with you long after the screen fades to black :)</b>
 
         </p>
       </p>

@@ -53,7 +53,7 @@ export default function ContactForm() {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-6 md:py-10 flex flex-col items-center">
       {/* Page Title */}
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black font-fredoka text-center mb-8 md:mb-12 tracking-tight">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black font-GochiHand text-center mb-8 md:mb-12 tracking-tight">
         Let's Connect!
       </h1>
 
@@ -115,7 +115,7 @@ export default function ContactForm() {
                   <label className="font-fredoka font-bold text-gray-900 text-base md:text-lg min-w-[50px]">
                     To:
                   </label>
-                  <div className="flex-grow bg-[#f3f3f3] rounded-xl px-3 py-1.5 flex items-center justify-between font-fredoka text-xs md:text-sm border border-gray-200/60 ">
+                  <div className="flex-grow bg-[#f3f3f3] rounded-xl px-3 py-1.5 flex items-center justify-between font-GochiHand text-xs md:text-sm border border-gray-200/60 ">
                     <span className="font-bold text-gray-800">Studio Biskoot</span>
                     <span className="text-xs text-gray-400 font-bold">Cc</span>
                   </div>

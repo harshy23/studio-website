@@ -65,7 +65,7 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
           <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-auto">
             <iframe
               title="vimeo-player"
-              src="https://player.vimeo.com/video/1236850398?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0&background=1"
+              src="https://player.vimeo.com/video/1239034191?h=e7cf438afe?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0&background=1"
               className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
               allowFullScreen
@@ -101,12 +101,12 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group/btn absolute bottom-6 right-6 md:bottom-10 md:right-12 z-20 flex items-center gap-3 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-black/60 backdrop-blur-md border border-white/30 text-white shadow-2xl hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
+            className="group/btn absolute bottom-6 right-6 md:bottom-10 md:right-12 z-20 flex items-center gap-1 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-[#D9D9D9] hover:text-white transition-all duration-300 cursor-pointer"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 group-hover/btn:bg-black group-hover/btn:text-white flex items-center justify-center transition-colors duration-300">
-              <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white group-hover/btn:fill-white ml-0.5" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full  group-hover/ group-hover/btn:text-[#D9D9D9]  flex items-center justify-center transition-colors duration-300">
+              <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#D9D9D9] group-hover/btn:fill-[#D9D9D9] ml-0.5" />
             </div>
-            <span className="text-xs sm:text-sm font-fredoka font-semibold tracking-wide">
+            <span className=" text-[#D9D9D9]  text-xs sm:text-sm font-fredoka font-semibold tracking-wide">
               Watch Intro
             </span>
           </motion.button>
