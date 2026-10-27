@@ -21,7 +21,7 @@ export const CHARACTER_CONFIGS = {
         bgColor: '#FFB649',
         fps: 24,
         image: vatsalCard,
-        imageClassName: 'scale-[1.15] origin-bottom',
+        imageClassName: 'scale-[1.3] origin-bottom ml-8 sm:ml-12',
         socialLinks: { email: '#', instagram: '#' },
     },
     vineet: {
@@ -32,6 +32,7 @@ export const CHARACTER_CONFIGS = {
         bgColor: '#FFB649',
         fps: 24,
         image: shubhamCard,
+        imageClassName: 'scale-[1.32] origin-bottom ml-8 sm:ml-12',
         socialLinks: { linkedin: '#', email: '#', instagram: '#' },
     },
 };
@@ -40,6 +41,23 @@ export const CHARACTER_CONFIGS = {
 
 function ProfileThumb({ name, beforeImg, afterImg, accentColor, rotate, onClick, index }) {
     const [hovered, setHovered] = useState(false);
+    const [isMobile, setIsMobile] = useState(() =>
+        typeof window !== 'undefined'
+            ? window.innerWidth < 640 || window.matchMedia('(hover: none), (pointer: coarse)').matches
+            : false
+    );
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(
+                typeof window !== 'undefined' &&
+                    (window.innerWidth < 640 || window.matchMedia('(hover: none), (pointer: coarse)').matches)
+            );
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     return (
         <motion.div
@@ -53,16 +71,16 @@ function ProfileThumb({ name, beforeImg, afterImg, accentColor, rotate, onClick,
                 type="button"
                 aria-label={`Meet ${name}`}
                 onClick={onClick}
-                onHoverStart={() => setHovered(true)}
-                onHoverEnd={() => setHovered(false)}
+                onHoverStart={() => !isMobile && setHovered(true)}
+                onHoverEnd={() => !isMobile && setHovered(false)}
                 className="group relative cursor-pointer border-0 bg-transparent p-0 outline-none"
                 style={{ rotate }}
-                whileHover={{ scale: 1.05, rotate: 0 }}
+                whileHover={isMobile ? undefined : { scale: 1.05, rotate: 0 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ duration: 0.35, ease }}
             >
                 <img
-                    src={hovered ? afterImg : beforeImg}
+                    src={!isMobile && hovered ? afterImg : beforeImg}
                     alt={name}
                     draggable="false"
                     className="
@@ -80,7 +98,7 @@ function ProfileThumb({ name, beforeImg, afterImg, accentColor, rotate, onClick,
             </motion.button>
 
             <motion.p
-                animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
+                animate={isMobile ? { opacity: 1, y: 0 } : { opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
                 transition={{ duration: 0.22, ease: 'easeOut' }}
                 className="mt-3 select-none font-fredoka text-xl font-semibold sm:text-2xl"
                 style={{ color: accentColor }}
@@ -95,14 +113,7 @@ function SudoModal({ onClose }) {
     const config = CHARACTER_CONFIGS.sudo;
     return (
         <div
-            className="
-        relative
-        mx-auto
-        w-full
-        max-w-[760px]
-        sm:max-w-[860px]
-        md:max-w-[940px]
-      "
+            className="relative mx-auto w-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
         >
             <IntroCard
@@ -124,14 +135,7 @@ function VineetModal({ onClose }) {
     const config = CHARACTER_CONFIGS.vineet;
     return (
         <div
-            className="
-        relative
-        mx-auto
-        w-full
-        max-w-[760px]
-        sm:max-w-[860px]
-        md:max-w-[940px]
-      "
+            className="relative mx-auto w-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
         >
             <IntroCard
@@ -225,8 +229,7 @@ export default function AssociatesProfile() {
                         name="Vatsal Bucha"
                         beforeImg={vatsal}
                         afterImg={vatsalHover}
-                        accentColor="#FFB649
-                        "
+                        accentColor="#FFB649"
                         index={1}
                         onClick={() => setOpenProfile('sudo')}
                     />
@@ -243,7 +246,7 @@ export default function AssociatesProfile() {
               z-[200]
               flex items-center justify-center
               overflow-hidden
-              px-6 py-12
+              px-3 py-6
               sm:px-10
             "
                         initial={{ opacity: 0 }}

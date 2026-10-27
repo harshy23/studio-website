@@ -72,7 +72,7 @@ export default function ProjectDetail() {
             allowFullScreen
           />
         </motion.div>
-      ) : (project.isBakingInProgress || project.id !== 1) ? (
+      ) : project.isBakingInProgress ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -144,7 +144,7 @@ export default function ProjectDetail() {
             className="pt-14 sm:pt-18 pb-6"
           >
             <h3 className="text-center font-fredoka text-xl sm:text-2xl font-bold text-[#FF5C75] tracking-wide mb-8">
-              Credits
+              {project.credits.titl}
             </h3>
 
             <div className="max-w-xl mx-auto flex flex-col gap-4 font-fredoka">
@@ -166,6 +166,9 @@ export default function ProjectDetail() {
                 </div>
               ))}
             </div>
+
+            {/* Subtle gradient divider line matching mockup */}
+            <div className="w-48 sm:w-64 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#7B81FF] to-transparent mt-14 sm:mt-18 opacity-70" />
           </motion.div>
         )}
       </section>
@@ -341,9 +344,109 @@ export default function ProjectDetail() {
                 );
               }
 
-              /* ── D) STILLS ─────────────────────────────────────────── */
+              /* ── D) BACKGROUNDS ───────────────────────────────────── */
+              if (sec.type === 'backgrounds') {
+                const bgs = sec.items || [];
+                return (
+                  <motion.div
+                    key={sec.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease }}
+                    className="flex flex-col items-center"
+                  >
+                    <h3
+                      className="font-fredoka text-xl sm:text-2xl font-bold tracking-wide mb-8 sm:mb-12"
+                      style={{ color: sec.accentColor || '#FF5C75' }}
+                    >
+                      {sec.title}
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full max-w-5xl">
+                      {bgs.length === 3 ? (
+                        <>
+                          {/* Top row: empty left cell on desktop, image on right */}
+                          <div className="hidden sm:block" />
+                          <div
+                            onClick={() => setLightboxImg(bgs[0])}
+                            className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                          >
+                            <img
+                              src={bgs[0]}
+                              alt="Background 1"
+                              className="w-full h-auto object-cover select-none group-hover:scale-[1.02] transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-2.5 rounded-full bg-white/90 text-gray-800 shadow-sm">
+                                <ZoomIn className="w-5 h-5" />
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Bottom row: two images side-by-side */}
+                          <div
+                            onClick={() => setLightboxImg(bgs[1])}
+                            className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                          >
+                            <img
+                              src={bgs[1]}
+                              alt="Background 2"
+                              className="w-full h-auto object-cover select-none group-hover:scale-[1.02] transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-2.5 rounded-full bg-white/90 text-gray-800 shadow-sm">
+                                <ZoomIn className="w-5 h-5" />
+                              </span>
+                            </div>
+                          </div>
+
+                          <div
+                            onClick={() => setLightboxImg(bgs[2])}
+                            className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                          >
+                            <img
+                              src={bgs[2]}
+                              alt="Background 3"
+                              className="w-full h-auto object-cover select-none group-hover:scale-[1.02] transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-2.5 rounded-full bg-white/90 text-gray-800 shadow-sm">
+                                <ZoomIn className="w-5 h-5" />
+                              </span>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        bgs.map((bg, bIdx) => (
+                          <div
+                            key={bIdx}
+                            onClick={() => setLightboxImg(bg)}
+                            className="group relative cursor-zoom-in overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                          >
+                            <img
+                              src={bg}
+                              alt={`Background ${bIdx + 1}`}
+                              className="w-full h-auto object-cover select-none group-hover:scale-[1.02] transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-2.5 rounded-full bg-white/90 text-gray-800 shadow-sm">
+                                <ZoomIn className="w-5 h-5" />
+                              </span>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              }
+
+              /* ── E) STILLS ─────────────────────────────────────────── */
               if (sec.type === 'stills') {
                 const stills = sec.items || [];
+                const isSingleColumn = sec.columns === 1 || sec.layout === 'full';
+
                 return (
                   <motion.div
                     key={sec.id}
@@ -360,26 +463,49 @@ export default function ProjectDetail() {
                       {sec.title}
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 w-full max-w-4xl overflow-hidden rounded-2xl shadow-xl border border-gray-200/60 bg-white">
-                      {stills.map((still, sIdx) => (
-                        <div
-                          key={sIdx}
-                          onClick={() => setLightboxImg(still)}
-                          className="group relative cursor-zoom-in overflow-hidden bg-black/5"
-                        >
-                          <img
-                            src={still}
-                            alt={`Movie still ${sIdx + 1}`}
-                            className="w-full h-auto object-cover select-none group-hover:scale-[1.03] transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                            <span className="p-2 rounded-full bg-white/90 text-gray-800 shadow-sm">
-                              <ZoomIn className="w-5 h-5" />
-                            </span>
+                    {isSingleColumn ? (
+                      <div className="flex flex-col gap-6 sm:gap-8 w-full max-w-5xl">
+                        {stills.map((still, sIdx) => (
+                          <div
+                            key={sIdx}
+                            onClick={() => setLightboxImg(still)}
+                            className="group relative cursor-zoom-in overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 bg-black/5 transition-all duration-300"
+                          >
+                            <img
+                              src={still}
+                              alt={`Movie still ${sIdx + 1}`}
+                              className="w-full h-auto object-contain select-none group-hover:scale-[1.01] transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-3 rounded-full bg-white/90 text-gray-800 shadow-md">
+                                <ZoomIn className="w-6 h-6" />
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 w-full max-w-4xl overflow-hidden rounded-2xl shadow-xl border border-gray-200/60 bg-white">
+                        {stills.map((still, sIdx) => (
+                          <div
+                            key={sIdx}
+                            onClick={() => setLightboxImg(still)}
+                            className="group relative cursor-zoom-in overflow-hidden bg-black/5"
+                          >
+                            <img
+                              src={still}
+                              alt={`Movie still ${sIdx + 1}`}
+                              className="w-full h-auto object-cover select-none group-hover:scale-[1.03] transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-2 rounded-full bg-white/90 text-gray-800 shadow-sm">
+                                <ZoomIn className="w-5 h-5" />
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 );
               }

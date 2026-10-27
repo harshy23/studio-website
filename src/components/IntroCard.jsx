@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import CharacterFrameAnimation from './CharacterFrameAnimation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Displacements mapped to relative frame offsets (0 to 8) from impact frame
 const SHAKE_OFFSETS = [
@@ -98,93 +98,135 @@ export default function IntroCard({
   socialLinks = {},
   image = null,
   imageClassName = '',
+  characterClassName = '',
+  characterContainerClassName = '',
   uppercase = true,
 }) {
   const [currentFrame, setCurrentFrame] = useState(0);
+  const [scale, setScale] = useState(1);
+  const BASE_WIDTH = 760;
+  const BASE_HEIGHT = 430;
+
+  useEffect(() => {
+    const updateScale = () => {
+      if (typeof window === 'undefined') return;
+      const paddingX = 24;
+      const paddingY = 80;
+      const availW = window.innerWidth - paddingX;
+      const availH = window.innerHeight - paddingY;
+      const scaleW = availW / BASE_WIDTH;
+      const scaleH = availH / BASE_HEIGHT;
+      const newScale = Math.min(1, Math.min(scaleW, scaleH));
+      setScale(Math.max(0.35, newScale));
+    };
+
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
 
   // Directly calculate card displacement synchronously from current frame index
   const offset = calculateShakeDisplacement(currentFrame, shakeStartFrames, positionKeyframes, orientationKeyframes);
 
   return (
-    <motion.div
-      className="relative w-full max-w-[940px] font-GochiHand"
-      animate={{
-        x: offset.x,
-        y: offset.y,
-        rotate: offset.rotate,
-        rotateX: offset.rotateX,
-        rotateY: offset.rotateY,
+    <div
+      className="relative flex items-center justify-center select-none"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        width: scale < 1 ? `${Math.round(BASE_WIDTH * scale)}px` : '100%',
+        height: scale < 1 ? `${Math.round(BASE_HEIGHT * scale)}px` : 'auto',
+        maxWidth: `${BASE_WIDTH}px`,
       }}
-      transition={{ duration: 0 }}
     >
-      {/* Card background */}
       <div
-        className="relative overflow-hidden rounded-[32px] text-white p-8 sm:p-12 md:p-16 flex justify-end items-center shadow-2xl"
-        style={{ backgroundColor: bgColor }}
+        className="relative flex items-center justify-center"
+        style={{
+          width: `${BASE_WIDTH}px`,
+          transform: scale < 1 ? `scale(${scale})` : undefined,
+          transformOrigin: 'center center',
+        }}
       >
-        <div className="w-full max-w-[420px] flex flex-col items-center text-center font-fredoka">
-          <h2 className={`font-GochiHand text-4xl sm:text-5xl md:text-6xl font-black tracking-wider ${uppercase ? 'uppercase' : ''}`}>
-            {name}
-          </h2>
-          <p className="mt-2 text-xl sm:text-2xl font-bold tracking-tight">{role}</p>
-          <p className="mt-6 text-sm sm:text-base font-medium leading-relaxed opacity-90 px-2">
-            {description}
-          </p>
-          <div className="mt-8 flex items-center justify-center gap-4 font-GochiHand">
-            {/* icons – with proper protocol formatting */}
-            {socialLinks.linkedin && socialLinks.linkedin !== '#' && (
-              <a
-                href={socialLinks.linkedin.startsWith('http') ? socialLinks.linkedin : `https://${socialLinks.linkedin}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75" /></svg>
-              </a>
-            )}
-            {socialLinks.email && socialLinks.email !== '#' && (
-              <a
-                href={socialLinks.email.startsWith('mailto:') ? socialLinks.email : `mailto:${socialLinks.email}`}
-                aria-label="Email"
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="3" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
-              </a>
-            )}
-            {socialLinks.instagram && socialLinks.instagram !== '#' && (
-              <a
-                href={socialLinks.instagram.startsWith('http') ? socialLinks.instagram : `https://${socialLinks.instagram}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="6" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
-              </a>
-            )}
+        <motion.div
+          className="relative w-full font-GochiHand"
+          animate={{
+            x: offset.x,
+            y: offset.y,
+            rotate: offset.rotate,
+            rotateX: offset.rotateX,
+            rotateY: offset.rotateY,
+          }}
+          transition={{ duration: 0 }}
+        >
+          {/* Card background */}
+          <div
+            className="relative overflow-hidden rounded-[32px] text-white p-8 sm:p-10 md:p-12 flex justify-end items-center shadow-2xl"
+            style={{ backgroundColor: bgColor, minHeight: `${BASE_HEIGHT}px` }}
+          >
+            <div className="w-full max-w-[400px] flex flex-col items-center text-center font-fredoka z-10">
+              <h2 className={`font-GochiHand text-4xl sm:text-5xl md:text-6xl font-black tracking-wider leading-none ${uppercase ? 'uppercase' : ''}`}>
+                {name}
+              </h2>
+              <p className="mt-2 text-xl sm:text-2xl font-bold tracking-tight">{role}</p>
+              <p className="mt-5 text-sm sm:text-base font-medium leading-relaxed opacity-90 px-2">
+                {description}
+              </p>
+              <div className="mt-6 flex items-center justify-center gap-4 font-GochiHand">
+                {/* icons – with proper protocol formatting */}
+                {socialLinks.linkedin && socialLinks.linkedin !== '#' && (
+                  <a
+                    href={socialLinks.linkedin.startsWith('http') ? socialLinks.linkedin : `https://${socialLinks.linkedin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75" /></svg>
+                  </a>
+                )}
+                {socialLinks.email && socialLinks.email !== '#' && (
+                  <a
+                    href={socialLinks.email.startsWith('mailto:') ? socialLinks.email : `mailto:${socialLinks.email}`}
+                    aria-label="Email"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="3" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                  </a>
+                )}
+                {socialLinks.instagram && socialLinks.instagram !== '#' && (
+                  <a
+                    href={socialLinks.instagram.startsWith('http') ? socialLinks.instagram : `https://${socialLinks.instagram}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl text-white hover:opacity-80 transition-opacity"
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="6" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Character animation / image overlay */}
-      <div className="pointer-events-none absolute bottom-0 -left-[4%] sm:-left-[8%] z-20 w-[50%] min-w-[240px] max-w-[460px] overflow-visible flex items-end">
-        {frames && frames.length > 0 ? (
-          <CharacterFrameAnimation
-            frames={frames}
-            fps={fps}
-            loop={false}
-            onFrameChange={setCurrentFrame}
-            className="block w-full max-h-[520px] select-none object-contain overflow-visible max-w-none"
-          />
-        ) : image ? (
-          <img
-            src={image}
-            alt={name}
-            className={`ml-32 block w-full max-h-[520px] select-none object-contain overflow-visible max-w-none ${imageClassName}`.trim()}
-          />
-        ) : null}
+          {/* Character animation / image overlay */}
+          <div className={`pointer-events-none absolute bottom-0 -left-[40%] sm:-left-[20%] z-20 w-[54%] max-w-[500px] overflow-visible flex items-end ${characterContainerClassName}`.trim()}>
+            {frames && frames.length > 0 ? (
+              <CharacterFrameAnimation
+                frames={frames}
+                fps={fps}
+                loop={false}
+                onFrameChange={setCurrentFrame}
+                className={`block w-full max-h-[580px] select-none object-contain overflow-visible max-w-none ${characterClassName}`.trim()}
+              />
+            ) : image ? (
+              <img
+                src={image}
+                alt={name}
+                className={`block w-full max-h-[580px] select-none object-contain overflow-visible max-w-none ${characterClassName} ${imageClassName}`.trim()}
+              />
+            ) : null}
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }

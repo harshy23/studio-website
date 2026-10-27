@@ -22,7 +22,7 @@ function BackgroundSlideshow() {
       <motion.div
         className="flex h-full w-max"
         animate={{
-          x: ['-50%', '0%'],
+          x: ['0%', '-50%'],
         }}
         transition={{
           x: {
@@ -113,10 +113,10 @@ export default function SlideshowSection() {
 
           {/* Navigation */}
           <nav className="flex flex-col items-end md:items-start gap-4 text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
-            <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
+            {/* <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
             <a href="#work" className="hover:opacity-80 transition-opacity">Work</a>
             <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-            <a href="#testimonials" className="hover:opacity-80 transition-opacity">Client Testimonials</a>
+            <a href="#testimonials" className="hover:opacity-80 transition-opacity">Client Testimonials</a> */}
           </nav>
 
           {/* Contact Info */}

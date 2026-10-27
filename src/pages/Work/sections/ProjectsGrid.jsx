@@ -72,7 +72,7 @@ export default function ProjectsGrid() {
                 >
                   {/* Image / Placeholder */}
                   <div className="absolute inset-0 overflow-hidden">
-                    {project.isBakingInProgress || project.id !== 1 ? (
+                    {project.isBakingInProgress ? (
                       <div className="w-full h-full bg-[#121216] flex flex-col items-center justify-center p-6 text-center select-none group-hover:scale-105 transition-transform duration-700">
                         <img
                           src={project.image}
