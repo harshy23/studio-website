@@ -37,6 +37,7 @@ import shubhamHover from './about_us_img/associates/shubham_onhover.png';
 import vatsalCard from './about_us_img/associates/vatsal_card.png';
 import shubhamCard from './about_us_img/associates/shubham_card.png';
 import bgmi from './work/project_unbreakable/bgmi.png';
+import bgmiCharacterSheet from './work/project_unbreakable/Studio Biskoot Homepage.png';
 const startingLogoFrameModules = import.meta.glob(
   './home_page_img/starting_logo/reveal 1/*.png',
   { eager: true, import: 'default' }
@@ -92,6 +93,7 @@ export {
   vatsalCard,
   shubhamCard,
   bgmi,
+  bgmiCharacterSheet,
 };
 
 

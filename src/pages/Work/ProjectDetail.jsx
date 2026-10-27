@@ -113,7 +113,7 @@ export default function ProjectDetail() {
           transition={{ duration: 0.6, ease }}
         >
           {/* Main Title */}
-          <h1 className="font-fredoka text-4xl sm:text-5xl md:text-6xl font-bold text-[#1f1f2e] tracking-tight">
+          <h1 className="font-fredoka text-4xl sm:text-5xl md:text-6xl font-bold text-[#1f1f2e] tracking-tight whitespace-pre-line">
             {project.projectTitle || project.title}
           </h1>
 
@@ -135,7 +135,7 @@ export default function ProjectDetail() {
         {/* ─────────────────────────────────────────────────────────────
             3. CREDITS TABLE
         ───────────────────────────────────────────────────────────── */}
-        {project.credits && project.credits.length > 0 && (
+        {((project.credits && project.credits.length > 0) || (project.teamCredits && project.teamCredits.length > 0)) && (
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,29 +143,66 @@ export default function ProjectDetail() {
             transition={{ duration: 0.6, delay: 0.1, ease }}
             className="pt-14 sm:pt-18 pb-6"
           >
-            <h3 className="text-center font-fredoka text-xl sm:text-2xl font-bold text-[#FF5C75] tracking-wide mb-8">
-              {project.credits.titl}
-            </h3>
+            {project.credits && project.credits.length > 0 && (
+              <>
+                <h3 className="text-center font-fredoka text-xl sm:text-2xl font-bold text-[#FF5C75] tracking-wide mb-8">
+                  {project.creditsTitle || (project.credits[0] && project.credits[0].titl) || "Credits"}
+                </h3>
 
-            <div className="max-w-xl mx-auto flex flex-col gap-4 font-fredoka">
-              {project.credits.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="grid grid-cols-[1fr_1.3fr] sm:grid-cols-[1fr_1.5fr] gap-4 sm:gap-8 items-start"
-                >
-                  <span className="text-right text-gray-500 font-medium text-sm sm:text-base">
-                    {item.role}
-                  </span>
-                  <div className="text-left text-gray-900 font-semibold text-sm sm:text-base flex flex-col gap-0.5">
-                    {Array.isArray(item.names) ? (
-                      item.names.map((name, nIdx) => <span key={nIdx}>{name}</span>)
-                    ) : (
-                      <span>{item.names}</span>
-                    )}
-                  </div>
+                <div className="max-w-xl mx-auto flex flex-col gap-4 font-fredoka">
+                  {project.credits
+                    .filter((item) => item.role)
+                    .map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="grid grid-cols-[1fr_1.3fr] sm:grid-cols-[1fr_1.5fr] gap-4 sm:gap-8 items-start"
+                      >
+                        <span className="text-right text-gray-500 font-medium text-sm sm:text-base">
+                          {item.role}:
+                        </span>
+                        <div className="text-left text-gray-900 font-semibold text-sm sm:text-base flex flex-col gap-0.5">
+                          {Array.isArray(item.names) ? (
+                            item.names.map((name, nIdx) => <span key={nIdx}>{name}</span>)
+                          ) : (
+                            <span>{item.names}</span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
+
+            {/* Optional secondary / team credits (e.g., Team Biskoot) */}
+            {project.teamCredits && project.teamCredits.length > 0 && (
+              <div className="mt-12 sm:mt-14">
+                <h3 className="text-center font-fredoka text-xl sm:text-2xl font-bold text-[#5A63DB] tracking-wide mb-8">
+                  {project.teamCreditsTitle || "Team Biskoot"}
+                </h3>
+
+                <div className="max-w-xl mx-auto flex flex-col gap-4 font-fredoka">
+                  {project.teamCredits
+                    .filter((item) => item.role)
+                    .map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="grid grid-cols-[1fr_1.3fr] sm:grid-cols-[1fr_1.5fr] gap-4 sm:gap-8 items-start"
+                      >
+                        <span className="text-right text-gray-500 font-medium text-sm sm:text-base">
+                          {item.role}:
+                        </span>
+                        <div className="text-left text-gray-900 font-semibold text-sm sm:text-base flex flex-col gap-0.5">
+                          {Array.isArray(item.names) ? (
+                            item.names.map((name, nIdx) => <span key={nIdx}>{name}</span>)
+                          ) : (
+                            <span>{item.names}</span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
 
             {/* Subtle gradient divider line matching mockup */}
             <div className="w-48 sm:w-64 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#7B81FF] to-transparent mt-14 sm:mt-18 opacity-70" />
@@ -177,16 +214,18 @@ export default function ProjectDetail() {
           4. BEHIND THE SCENES
       ───────────────────────────────────────────────────────────── */}
       {btsSections.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-28">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="font-fredoka text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 text-center mb-16 sm:mb-20"
-          >
-            Behind the scenes
-          </motion.h2>
+        <section className={`max-w-6xl mx-auto px-4 sm:px-6 ${project.showBtsHeader === false ? 'pt-6 sm:pt-10' : 'pt-16 sm:pt-24'} pb-28`}>
+          {project.showBtsHeader !== false && (
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease }}
+              className="font-fredoka text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 text-center mb-16 sm:mb-20"
+            >
+              Behind the scenes
+            </motion.h2>
+          )}
 
           <div className="flex flex-col gap-20 sm:gap-28">
             {btsSections.map((sec) => {
@@ -504,6 +543,59 @@ export default function ProjectDetail() {
                             </div>
                           </div>
                         ))}
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              }
+
+              /* ── F) LAYOUT ANIMATIONS (VIDEO + STILLS/IMAGE) ───────── */
+              if (sec.type === 'layoutAnimations') {
+                return (
+                  <motion.div
+                    key={sec.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease }}
+                    className="flex flex-col items-center w-full"
+                  >
+                    <h3
+                      className="font-fredoka text-xl sm:text-2xl font-bold tracking-wide mb-8 sm:mb-12"
+                      style={{ color: sec.accentColor || '#FF5C75' }}
+                    >
+                      {sec.title}
+                    </h3>
+
+                    {/* Layout Video */}
+                    {sec.videoUrl && (
+                      <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-black border border-gray-200 shadow-xl aspect-video mb-12 sm:mb-16">
+                        <iframe
+                          title={sec.title || "Layout Animation Video"}
+                          src={`${sec.videoUrl}${sec.videoUrl.includes('?') ? '&' : '?'}autoplay=0&loop=1&muted=0&autopause=0`}
+                          className="w-full h-full border-0"
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
+
+                    {/* Layout Animation Character Sheet / Image */}
+                    {sec.image && (
+                      <div
+                        onClick={() => setLightboxImg(sec.image)}
+                        className="group relative cursor-zoom-in w-full max-w-2xl sm:max-w-3xl flex justify-center transition-all duration-300"
+                      >
+                        <img
+                          src={sec.image}
+                          alt={sec.title}
+                          className="w-full h-auto object-contain select-none group-hover:scale-[1.01] transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 pointer-events-none rounded-2xl">
+                          <span className="p-2.5 rounded-full bg-white/90 text-gray-800 shadow-md">
+                            <ZoomIn className="w-6 h-6" />
+                          </span>
+                        </div>
                       </div>
                     )}
                   </motion.div>

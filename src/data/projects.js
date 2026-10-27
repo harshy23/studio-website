@@ -3,7 +3,7 @@ import project2 from '../logos/application_logo/slide show 2.png';
 import project3 from '../logos/application_logo/slide show 3.png';
 import project4 from '../logos/application_logo/slide show 4.png';
 import project5 from '../logos/application_logo/slide show 5.png';
-import { bgmi } from '../logos';
+import { bgmi, bgmiCharacterSheet } from '../logos';
 import { LogoPrimary } from '../logos';
 import { fatherDayAssets } from '../logos/work/project_father_day';
 import { pubgAssets } from '../logos/work/Project_pubg';
@@ -25,8 +25,8 @@ export const projects = [
     bannerImage: fatherDayAssets.banner,
     description:
       'A heartwarming animated short film ad where a young boy narrates a speech during his school assembly, describing his father as his best buddy. As he shares cherished memories of love, laughter, guidance, and everyday adventures, vibrant animated visuals bring each moment to life, celebrating the beautiful bond between a father and child.',
+    creditsTitle: 'Credits',
     credits: [
-      { titl: "Credits" },
       { role: 'Director', names: ['Vineet Manoj Karnani'] },
       { role: 'Art Director', names: ['Sudhanshu Kanwar'] },
       {
@@ -80,10 +80,11 @@ export const projects = [
     bannerImage: pubgAssets.banner,
     isBakingInProgress: false,
     link: '/work/a-streamers-world',
+    vimeoVideo: "https://player.vimeo.com/video/1231626885?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
     description:
       'An animated intro and outro created for content creator Febreyze, to showcase her personality through her character. The video brings her favourite games, places, and food spots to life, capturing the little things that make her unique.',
+    creditsTitle: 'Credits',
     credits: [
-      { titl: "Credits" },
       { role: 'Director', names: ['Vineet Manoj Karnani', 'Sudhanshu Kanwar'] },
       { role: 'Art Director', names: ['Vineet Manoj Karnani'] },
       {
@@ -137,14 +138,14 @@ export const projects = [
     category: '2D Animation',
     tags: ['2D Animation', 'Intro & Outro'],
     image: bgmi,
-    bannerImage: bgmi,
+    bannerImage: null,
     isBakingInProgress: false,
     link: '/work/unbreakable-bgmi-music-video',
-    vimeoVideo: 'https://player.vimeo.com/video/1239577615?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+    vimeoVideo: "https://player.vimeo.com/video/1239577615?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
     description:
-      'In collaboration with Lan Lan Studios, we were part of the character animation team for the Unbreakable BGMI music video, contributing layout animation to establish character positioning, staging, and movement within each shot. It was a rewarding opportunity to collaborate with a talented team of artists and contribute to bringing the music video’s visual narrative to life.h',
+      'In collaboration with Lan Lan Studios, we were part of the character animation team for the Unbreakable BGMI music video, contributing layout animation to establish character positioning, staging, and movement within each shot. It was a rewarding opportunity to collaborate with a talented team of artists and contribute to bringing the music video’s visual narrative to life.',
+    creditsTitle: 'Project Crew',
     credits: [
-      { titl: "Project Crew" },
       { role: 'Production Management', names: ['Preetham Gunalan'] },
       { role: 'Direction/Animation Direction', names: ['Sailesh Gopalan'] },
       { role: 'Colour Keys', names: ['Priya'] },
@@ -181,13 +182,24 @@ export const projects = [
       { role: '3D', names: ['Devanshu Tak'] },
       { role: 'Compositing', names: ['Sailesh Gopalan'] },
     ],
-
-
-
-
-
-
-
+    teamCreditsTitle: 'Team Biskoot',
+    teamCredits: [
+      {
+        role: 'Character Layout Animation',
+        names: ['Vineet Manoj Karnani', 'Sudhanshu Kanwar'],
+      },
+    ],
+    showBtsHeader: false,
+    behindTheScenes: [
+      {
+        id: 'layout-animations',
+        title: 'Layout Animations',
+        accentColor: '#FF5C75',
+        type: 'layoutAnimations',
+        videoUrl: 'https://player.vimeo.com/video/1239577615?badge=0&autopause=0&player_id=0&app_id=58479',
+        // image: bgmiCharacterSheet,
+      },
+    ],
   },
   {
     id: 4,
