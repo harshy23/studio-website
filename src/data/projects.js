@@ -141,7 +141,7 @@ export const projects = [
     bannerImage: null,
     isBakingInProgress: false,
     link: '/work/unbreakable-bgmi-music-video',
-    vimeoVideo: "https://player.vimeo.com/video/1239577615?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+    vimeoVideo: "https://www.youtube.com/embed/RIE6_H37YGI?si=Pzz1JLISqM2gk298",
     description:
       'In collaboration with Lan Lan Studios, we were part of the character animation team for the Unbreakable BGMI music video, contributing layout animation to establish character positioning, staging, and movement within each shot. It was a rewarding opportunity to collaborate with a talented team of artists and contribute to bringing the music video’s visual narrative to life.',
     creditsTitle: 'Project Crew',
