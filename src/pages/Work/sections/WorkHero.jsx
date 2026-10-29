@@ -37,7 +37,7 @@ export default function WorkHero({ introVideoSrc = animationIntroVideo }) {
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-auto">
           <iframe
             title="vimeo-player"
-            src="https://player.vimeo.com/video/1236850398?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0&background=1"
+            src="https://player.vimeo.com/video/1236850398?title=0?h=6b50e7494b&autoplay=1&loop=1&muted=1&autopause=0&background=1"
             className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
             allowFullScreen
@@ -104,31 +104,13 @@ export default function WorkHero({ introVideoSrc = animationIntroVideo }) {
 
               {/* Video Player inside Modal */}
               <div className="relative w-full aspect-video bg-black flex items-center justify-center">
-                {introVideoSrc && !hasVideoError ? (
-                  <video
-                    src={introVideoSrc}
-                    controls
-                    autoPlay
-                    onError={() => setHasVideoError(true)}
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-gray-900 to-black text-white relative">
-                    <div className="w-20 h-20 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary mb-6 animate-pulse">
-                      <Film className="w-10 h-10" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-fredoka font-bold text-white mb-2">
-                      Studio Biskoot Intro Video
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-400 max-w-md mb-6 font-fredoka">
-                      Full video player template ready. Once the final intro video file is attached, it will play here with full sound and controls.
-                    </p>
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-xs font-fredoka text-gray-300">
-                      <Volume2 className="w-4 h-4 text-primary" />
-                      <span>Audio Enabled</span>
-                    </div>
-                  </div>
-                )}
+                <iframe
+                  title="vimeo-intro-player"
+                  src="https://player.vimeo.com/video/1236850398?autoplay=1&muted=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+                  className="w-full h-full border-0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                  allowFullScreen
+                />
               </div>
             </motion.div>
           </motion.div>
