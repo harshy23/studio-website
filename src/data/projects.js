@@ -7,6 +7,7 @@ import { bgmi, bgmiCharacterSheet } from '../logos';
 import { LogoPrimary } from '../logos';
 import { fatherDayAssets } from '../logos/work/project_father_day';
 import { pubgAssets } from '../logos/work/Project_pubg';
+import { momentMarketingAssets } from '../logos/work/project_MomentMarketing';
 import { Heading } from 'lucide-react';
 
 export const projects = [
@@ -203,17 +204,51 @@ export const projects = [
   },
   {
     id: 4,
-    slug: 'halwa-2',
-    title: 'WIP',
-    // projectTitle: 'Halwa 2 Animation',
-    client: 'Commercial',
-    // category: 'Commercial',
-    tags: [''],
-    image: LogoPrimary,
-    isBakingInProgress: true,
-    // year: '2026',
-    link: '/work/halwa-2',
-    description: 'A stylistic visual campaign crafted with hand-drawn frames and storytelling.',
+    slug: 'moment-marketing',
+    title: 'Moment Marketing',
+    projectTitle: 'Moment Marketing',
+    client: 'Client - Groww',
+    category: '2D Animation',
+    tags: ['2D Animation', 'Social Media'],
+    image: momentMarketingAssets.thumbnail,
+    hideHeroBanner: true,
+    hideCreditsColon: true,
+    showBackButton: false,
+    btsHeaderTitle: 'Projects',
+    link: '/work/moment-marketing',
+    description:
+      'A series of animated videos created for the lovely folks at Groww to celebrate special milestones, festivals, and new feature launches. Each video uses a unique theme and narrative to make its concept more engaging, relatable, and easy for audiences to connect with.',
+    creditsTitle: 'Team',
+    credits: [
+      {
+        role: 'Director',
+        names: ['Vineet Manoj Karnani', 'Sudhanshu Kanwar'],
+      },
+      {
+        role: 'Animators',
+        names: ['Vineet Manoj Karnani', 'Sudhanshu Kanwar'],
+      },
+      {
+        role: 'Coloring Artist',
+        names: [
+          'Kriti Bhavaraju',
+          'Varsha Padmanabhan',
+          'Guru Kapadia',
+          'Ayushi Rewatkar',
+        ],
+      },
+      {
+        role: 'Editing',
+        names: ['Shubham Mohapatra'],
+      },
+    ],
+    behindTheScenes: [
+      {
+        id: 'moment-marketing-projects',
+        type: 'projectGrid',
+        items: momentMarketingAssets.projects,
+      },
+    ],
   },
   {
     id: 5,

@@ -57,50 +57,52 @@ export default function ProjectDetail() {
       {/* ─────────────────────────────────────────────────────────────
           1. TOP HERO BANNER
       ───────────────────────────────────────────────────────────── */}
-      {project.vimeoVideo ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease }}
-          className="w-full relative overflow-hidden bg-black border-b border-gray-100 aspect-video max-h-[520px] sm:max-h-[620px] lg:max-h-[720px] flex items-center justify-center"
-        >
-          <iframe
-            title="vimeo-player"
-            src={`${project.vimeoVideo}${project.vimeoVideo.includes('?') ? '&' : '?'}autoplay=1&loop=1&muted=1&autopause=0`}
-            className="w-full h-full border-0"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-            allowFullScreen
-          />
-        </motion.div>
-      ) : project.isBakingInProgress ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease }}
-          className="w-full relative overflow-hidden bg-[#121216] border-b border-gray-100 py-20 flex flex-col items-center justify-center text-center select-none"
-        >
-          <img
-            src={project.image}
-            alt="Studio Biskoot"
-            className="w-28 sm:w-36 md:w-44 h-auto object-contain filter grayscale contrast-125 brightness-95 opacity-85"
-          />
-          <p className="mt-4 text-sm sm:text-base font-fredoka font-medium tracking-wider text-gray-300 lowercase grayscale">
-            baking in progress..
-          </p>
-        </motion.div>
-      ) : (project.bannerImage || project.image) && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease }}
-          className="w-full relative overflow-hidden bg-gray-100 border-b border-gray-100"
-        >
-          <img
-            src={project.bannerImage || project.image}
-            alt={project.projectTitle || project.title}
-            className="w-full h-auto max-h-[520px] sm:max-h-[620px] lg:max-h-[720px] object-cover object-center"
-          />
-        </motion.div>
+      {!project.hideHeroBanner && (
+        project.vimeoVideo ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease }}
+            className="w-full relative overflow-hidden bg-black border-b border-gray-100 aspect-video max-h-[520px] sm:max-h-[620px] lg:max-h-[720px] flex items-center justify-center"
+          >
+            <iframe
+              title="vimeo-player"
+              src={`${project.vimeoVideo}${project.vimeoVideo.includes('?') ? '&' : '?'}autoplay=1&loop=1&muted=1&autopause=0`}
+              className="w-full h-full border-0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              allowFullScreen
+            />
+          </motion.div>
+        ) : project.isBakingInProgress ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease }}
+            className="w-full relative overflow-hidden bg-[#121216] border-b border-gray-100 py-20 flex flex-col items-center justify-center text-center select-none"
+          >
+            <img
+              src={project.image}
+              alt="Studio Biskoot"
+              className="w-28 sm:w-36 md:w-44 h-auto object-contain filter grayscale contrast-125 brightness-95 opacity-85"
+            />
+            <p className="mt-4 text-sm sm:text-base font-fredoka font-medium tracking-wider text-gray-300 lowercase grayscale">
+              baking in progress..
+            </p>
+          </motion.div>
+        ) : (project.bannerImage || project.image) && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease }}
+            className="w-full relative overflow-hidden bg-gray-100 border-b border-gray-100"
+          >
+            <img
+              src={project.bannerImage || project.image}
+              alt={project.projectTitle || project.title}
+              className="w-full h-auto max-h-[520px] sm:max-h-[620px] lg:max-h-[720px] object-cover object-center"
+            />
+          </motion.div>
+        )
       )}
 
       {/* ─────────────────────────────────────────────────────────────
@@ -158,7 +160,7 @@ export default function ProjectDetail() {
                         className="grid grid-cols-[1fr_1.3fr] sm:grid-cols-[1fr_1.5fr] gap-4 sm:gap-8 items-start"
                       >
                         <span className="text-right text-gray-500 font-medium text-sm sm:text-base">
-                          {item.role}:
+                          {item.role}{project.hideCreditsColon ? '' : ':'}
                         </span>
                         <div className="text-left text-gray-900 font-semibold text-sm sm:text-base flex flex-col gap-0.5">
                           {Array.isArray(item.names) ? (
@@ -189,7 +191,7 @@ export default function ProjectDetail() {
                         className="grid grid-cols-[1fr_1.3fr] sm:grid-cols-[1fr_1.5fr] gap-4 sm:gap-8 items-start"
                       >
                         <span className="text-right text-gray-500 font-medium text-sm sm:text-base">
-                          {item.role}:
+                          {item.role}{project.hideCreditsColon ? '' : ':'}
                         </span>
                         <div className="text-left text-gray-900 font-semibold text-sm sm:text-base flex flex-col gap-0.5">
                           {Array.isArray(item.names) ? (
@@ -223,7 +225,7 @@ export default function ProjectDetail() {
               transition={{ duration: 0.6, ease }}
               className="font-fredoka text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 text-center mb-16 sm:mb-20"
             >
-              Behind the scenes
+              {project.btsHeaderTitle || 'Behind the scenes'}
             </motion.h2>
           )}
 
@@ -602,19 +604,73 @@ export default function ProjectDetail() {
                 );
               }
 
+              /* ── G) PROJECT / CARD GRID ───────────────────────────────────── */
+              if (sec.type === 'projectGrid' || sec.type === 'projects' || sec.type === 'cardGrid') {
+                const items = sec.items || [];
+                return (
+                  <motion.div
+                    key={sec.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease }}
+                    className="flex flex-col items-center w-full"
+                  >
+                    {sec.title && (
+                      <h3
+                        className="font-fredoka text-xl sm:text-2xl font-bold tracking-wide mb-8 sm:mb-12"
+                        style={{ color: sec.accentColor || '#1f1f2e' }}
+                      >
+                        {sec.title}
+                      </h3>
+                    )}
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-10 md:gap-x-12 gap-y-10 sm:gap-y-14 md:gap-y-16 w-full max-w-4xl mx-auto">
+                      {items.map((item, idx) => (
+                        <div key={item.id || idx} className="flex flex-col items-center w-full">
+                          <div
+                            onClick={() => setLightboxImg(item.image || item)}
+                            className="group relative cursor-zoom-in w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_16px_40px_rgb(0,0,0,0.12)] transition-all duration-300"
+                          >
+                            <img
+                              src={item.image || item}
+                              alt={item.title || `Project item ${idx + 1}`}
+                              className="w-full h-auto aspect-[9/16] object-cover select-none group-hover:scale-[1.02] transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="p-3 rounded-full bg-white/90 text-gray-800 shadow-md">
+                                <ZoomIn className="w-6 h-6" />
+                              </span>
+                            </div>
+                          </div>
+
+                          {item.title && (
+                            <h4 className="font-fredoka font-semibold text-base sm:text-lg text-gray-900 text-center mt-4 sm:mt-5 tracking-wide">
+                              {item.title}
+                            </h4>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              }
+
               return null;
             })}
           </div>
 
           {/* Bottom Back Button */}
-          <div className="mt-20 sm:mt-28 flex justify-center">
-            <Link
-              to="/work"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-gray-300 bg-white text-gray-800 font-fredoka font-semibold shadow-sm hover:shadow-md hover:border-gray-400 hover:bg-gray-50 transition-all duration-300"
-            >
-              <ArrowLeft className="w-4 h-4 text-primary" /> Back to All Projects
-            </Link>
-          </div>
+          {project.showBackButton !== false && (
+            <div className="mt-20 sm:mt-28 flex justify-center">
+              <Link
+                to="/work"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-gray-300 bg-white text-gray-800 font-fredoka font-semibold shadow-sm hover:shadow-md hover:border-gray-400 hover:bg-gray-50 transition-all duration-300"
+              >
+                <ArrowLeft className="w-4 h-4 text-primary" /> Back to All Projects
+              </Link>
+            </div>
+          )}
         </section>
       )}
 
