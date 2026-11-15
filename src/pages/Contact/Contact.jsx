@@ -4,14 +4,15 @@ import FaqSection from '../About/sections/FaqSection';
 
 export default function Contact() {
   return (
-    <main className="w-full min-h-screen flex flex-col items-center justify-start pt-24 md:pt-28 pb-0 bg-white">
+    <main className="w-full min-h-screen flex flex-col items-center justify-start pt-20 sm:pt-24 md:pt-28 pb-0 bg-white">
       <ContactForm />
-      <div className="w-full mt-12">
+      <div className="w-full mt-6 md:mt-12">
         <FaqSection />
       </div>
-      <div className="w-full mt-12">
+      <div className="w-full mt-4 md:mt-12">
         <SlideshowSection />
       </div>
     </main>
   );
 }
+

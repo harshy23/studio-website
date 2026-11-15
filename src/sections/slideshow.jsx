@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertTriangle, X } from 'lucide-react';
@@ -98,7 +99,7 @@ export default function SlideshowSection() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen w-full font-fredoka overflow-hidden  text-white selection:bg-white">
+    <section id="contact" className="relative min-h-[220px] sm:min-h-[280px] md:min-h-screen w-full font-fredoka overflow-hidden text-white selection:bg-white">
       {/* Background Slideshow */}
       <BackgroundSlideshow />
 
@@ -106,34 +107,36 @@ export default function SlideshowSection() {
       {/* <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden="true" /> */}
 
       {/* Foreground Content */}
-      <div className="relative z-10 w-full h-full min-h-screen flex flex-col justify-between p-8 md:p-12 lg:px-24 lg:py-16">
+      <div className="relative z-10 w-full h-full min-h-[220px] sm:min-h-[280px] md:min-h-screen flex flex-col justify-between p-4 sm:p-8 md:p-12 lg:px-24 lg:py-16">
 
         {/* TOP / RIGHT NAVIGATION & CONTACT INFO */}
-        <div className="flex flex-col md:flex-row justify-end items-end md:items-start gap-12 md:gap-32 w-full pt-8">
+        <div className="flex flex-row justify-between items-start md:items-start md:justify-end gap-4 md:gap-32 w-full pt-2 sm:pt-4 md:pt-8">
 
           {/* Navigation */}
-          <nav className="flex flex-col items-end md:items-start gap-4 text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
-            {/* <a href="#home" className="hover:opacity-80 transition-opacity">Home</a>
-            <a href="#work" className="hover:opacity-80 transition-opacity">Work</a>
-            <a href="#about" className="hover:opacity-80 transition-opacity">About Us</a>
-            <a href="#testimonials" className="hover:opacity-80 transition-opacity">Client Testimonials</a> */}
+          <nav className="flex flex-col items-start gap-1 sm:gap-2 md:gap-4 text-xs sm:text-base md:text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
+            <Link to="/" className="hover:opacity-80 transition-opacity">Home</Link>
+            <Link to="/work" className="hover:opacity-80 transition-opacity">Work</Link>
+            <Link to="/about" className="hover:opacity-80 transition-opacity">About Us</Link>
+            <a href="#testimonials" className="hover:opacity-80 transition-opacity">Client Testimonials</a>
           </nav>
 
           {/* Contact Info */}
-          <div className="flex flex-col items-end md:items-start gap-6 text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            <a href="mailto:hello@studiobiskoot.com" className="font-medium hover:opacity-80 transition-opacity">
+          <div className="flex flex-col items-end md:items-start gap-1 sm:gap-3 md:gap-6 text-xs sm:text-base md:text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <a href="mailto:hello@studiobiskoot.com" className="font-medium hover:opacity-80 transition-opacity text-[11px] sm:text-sm md:text-lg">
               hello@studiobiskoot.com
             </a>
-            <p className="max-w-[250px] leading-snug font-medium text-right md:text-left">
-              506, Lodha Supremus,11th<br />
-              Road, MIDC, Andheri East,<br />
-              Mumbai,Maharashtra,<br />
-              400093,India<br /><br />
-
-
-              10 Aldrin Dr Mount <br />
-              Waverley 3149 Victoria, <br />
-              Australia<br />
+            <p className="max-w-[170px] sm:max-w-[220px] md:max-w-[250px] leading-tight md:leading-snug font-medium text-right md:text-left text-[9.5px] sm:text-xs md:text-base">
+              506, Lodha Supremus,<br />
+              11th Road, MIDC,<br />
+              Andheri East, Mumbai,<br />
+              Maharashtra 400093,<br />
+              India
+              <span className="hidden md:inline">
+                <br /><br />
+                10 Aldrin Dr Mount <br />
+                Waverley 3149 Victoria, <br />
+                Australia<br />
+              </span>
             </p>
 
             {/* <button
@@ -145,51 +148,41 @@ export default function SlideshowSection() {
           </div>
         </div>
 
-
-      </div>
-
-      {/* BOTTOM AREA */}
-      <div className="flex flex-col md:flex-row justify-between ml-0 items-center md:items-end w-full mt-auto relative h-full">
-
-        {/* Bottom Left - Character Artwork & Copyright */}
-
-
-        {/* Bottom Center - Brand Logo */}
-
-        {/* Bottom Right - Socials & Legal */}
-        <div className="flex w-full h-full justify-end items-end gap-6 pb-10 ml-60 mr-10">
-          {/* Social Icons with Links */}
-          <div className="relative flex items-end pb-1 w-48 drop-shadow-md">
-            <img src={socialIcons} alt="Social Media" className="w-full h-auto object-contain select-none pointer-events-none" />
-            <div className="absolute inset-0 flex">
-              <a
-                href="https://www.linkedin.com/company/studio-biskoot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-1/3 h-full hover:opacity-80 transition-opacity"
-                title="LinkedIn"
-                aria-label="Studio Biskoot LinkedIn"
-              />
-              <a
-                href="https://www.instagram.com/studiobiskoot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-1/3 h-full hover:opacity-80 transition-opacity"
-                title="Instagram"
-                aria-label="Studio Biskoot Instagram"
-              />
-              <a
-                href="mailto:hello@studiobiskoot.com"
-                className="w-1/3 h-full hover:opacity-80 transition-opacity"
-                title="Email Us"
-                aria-label="Studio Biskoot Email"
-              />
+        {/* BOTTOM AREA */}
+        <div className="flex flex-row justify-end items-end w-full mt-auto relative h-full">
+          {/* Socials */}
+          <div className="flex w-full h-full justify-end items-end gap-6 pb-2 sm:pb-6 md:pb-10 md:ml-60 md:mr-10">
+            {/* Social Icons with Links */}
+            <div className="relative flex items-end pb-1 w-20 sm:w-28 md:w-48 drop-shadow-md">
+              <img src={socialIcons} alt="Social Media" className="w-full h-auto object-contain select-none pointer-events-none" />
+              <div className="absolute inset-0 flex">
+                <a
+                  href="https://www.linkedin.com/company/studio-biskoot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                  title="LinkedIn"
+                  aria-label="Studio Biskoot LinkedIn"
+                />
+                <a
+                  href="https://www.instagram.com/studiobiskoot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                  title="Instagram"
+                  aria-label="Studio Biskoot Instagram"
+                />
+                <a
+                  href="mailto:hello@studiobiskoot.com"
+                  className="w-1/3 h-full hover:opacity-80 transition-opacity"
+                  title="Email Us"
+                  aria-label="Studio Biskoot Email"
+                />
+              </div>
             </div>
           </div>
-
-          {/* Legal Links */}
-
         </div>
+
       </div>
 
       {/* CONTACT FORM MODAL */}

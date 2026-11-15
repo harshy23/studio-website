@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 import handImg from '../../../logos/home_page_img/menue/hand.png';
+import handMobileImg from '../../../logos/home_page_img/menue/hand_mobile.png';
 import thumbImg from '../../../logos/home_page_img/menue/thumb.png';
 import pickACard from '../../../logos/home_page_img/menue/PICK A CARD.png';
 import rect1 from '../../../logos/home_page_img/menue/Rectangle 1.png';
@@ -198,15 +199,15 @@ export default function MenuSection() {
         className="relative w-full overflow-hidden bg-white pb-6"
       >
         {/* MENU TITLE */}
-        <div className="pt-10 sm:pt-12 md:pt-14">
+        <div className="pt-6 sm:pt-10 md:pt-14">
           <h2
             className="
               text-center
               font-GochiHand
               font-medium
               text-[#302C2D]
-              text-[50px]
-              sm:text-[56px]
+              text-[42px]
+              sm:text-[52px]
               md:text-[62px]
               leading-none
             "
@@ -215,8 +216,79 @@ export default function MenuSection() {
           </h2>
         </div>
 
-        {/* MENU ARTWORK */}
-        <div className="w-full flex justify-center">
+        {/* =========================
+            MOBILE MENU ARTWORK (< md)
+        ========================== */}
+        <div className="flex md:hidden flex-col items-center w-full px-4 pt-4 pb-6 relative select-none">
+          <div className="relative flex flex-col items-center w-full max-w-[280px]">
+            {/* PINK CARD - Our Expertise */}
+            <motion.div
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setSelected(CARDS[0])}
+              className="relative z-10 w-[142px] sm:w-[155px] cursor-pointer shadow-sm rounded-2xl overflow-hidden"
+            >
+              <img
+                src={rect2}
+                alt="Our Expertise"
+                draggable={false}
+                className="w-full h-auto block select-none"
+              />
+            </motion.div>
+
+            {/* BLUE CARD - Animation Production */}
+            <motion.div
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setSelected(CARDS[1])}
+              className="relative z-20 w-[142px] sm:w-[155px] -mt-10 sm:-mt-11 cursor-pointer shadow-sm rounded-2xl overflow-hidden"
+            >
+              <img
+                src={rect1}
+                alt="Animation Production"
+                draggable={false}
+                className="w-full h-auto block select-none"
+              />
+            </motion.div>
+
+            {/* YELLOW CARD - What We Do */}
+            <motion.div
+              whileTap={{ scale: 0.96 }}
+              onClick={() => setSelected(CARDS[2])}
+              className="relative z-30 w-[142px] sm:w-[155px] -mt-10 sm:-mt-11 cursor-pointer shadow-sm rounded-2xl overflow-hidden"
+            >
+              <img
+                src={rect3}
+                alt="What We Do"
+                draggable={false}
+                className="w-full h-auto block select-none"
+              />
+            </motion.div>
+
+            {/* SPEECH BUBBLE - Pick a card */}
+            <div className="absolute -right-2 sm:right-1 bottom-[78px] sm:bottom-[92px] w-[84px] sm:w-24 z-40 pointer-events-none select-none">
+              <img
+                src={pickACard}
+                alt="Pick a card"
+                draggable={false}
+                className="w-full h-auto block"
+              />
+            </div>
+
+            {/* MOBILE HAND - hand_mobile.png */}
+            <div className="relative z-20 w-[196px] sm:w-[220px] -mt-3 sm:-mt-4 pointer-events-none select-none">
+              <img
+                src={handMobileImg}
+                alt="Hand"
+                draggable={false}
+                className="w-full h-auto block"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* =========================
+            DESKTOP MENU ARTWORK (>= md)
+        ========================== */}
+        <div className="hidden md:flex w-full justify-center">
           <div
             className="
               relative

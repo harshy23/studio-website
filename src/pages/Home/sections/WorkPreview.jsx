@@ -12,15 +12,18 @@ export default function WorkPreview() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="w-auto flex justify-center"
+      className="w-full sm:w-auto flex justify-center"
     >
       <Link
         to="/work"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative flex flex-col items-center cursor-pointer select-none py-2"
+        className="group relative flex flex-row md:flex-col items-center justify-center gap-3 sm:gap-6 md:gap-0 cursor-pointer select-none py-1 md:py-2"
       >
-        <div className="relative w-64 sm:w-72 md:w-96 h-64 sm:h-72 md:h-96 flex items-center justify-center transition-transform duration-300">
+        <h2 className="order-1 md:order-2 md:mt-3 font-GochiHand text-[32px] sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-wider transition-colors duration-300">
+          Work
+        </h2>
+        <div className="order-2 md:order-1 relative w-36 sm:w-52 md:w-96 h-36 sm:h-52 md:h-96 flex items-center justify-center transition-transform duration-300">
           <img
             src={vineetResting}
             alt="Work - Vineet Resting"
@@ -34,9 +37,6 @@ export default function WorkPreview() {
               }`}
           />
         </div>
-        <h2 className="mt-3 font-GochiHand text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-wider transition-colors duration-300 ">
-          WORK
-        </h2>
       </Link>
     </motion.div>
   );

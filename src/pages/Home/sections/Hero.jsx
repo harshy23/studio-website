@@ -37,81 +37,103 @@ export default function Hero({ introVideoSrc = animationIntroVideo }) {
   return (
     <section
       id="home-hero"
-      className="w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black text-white"
+      className="w-full relative overflow-hidden"
     >
-      {!isAnimationComplete ? (
-        /* Starting Frame Animation */
-        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6 bg-white">
+      {/* =========================
+          MOBILE HERO (< md)
+      ========================== */}
+      <div className="w-full flex md:hidden flex-col items-center justify-center pt-20 pb-2 px-6 bg-white text-black relative select-none">
+        <div className="w-full max-w-[210px] sm:max-w-xs flex flex-col items-center">
           <CharacterFrameAnimation
             frames={startingLogoFrames && startingLogoFrames.length > 0 ? startingLogoFrames : [LogoSecondary]}
             fps={24}
             loop={false}
-            onComplete={() => setIsAnimationComplete(true)}
-            className="w-full max-w-lg h-auto object-contain select-none"
+            className="w-full h-auto object-contain select-none"
           />
-          <p className="mt-4 text-lg text-dark-muted font-fredoka font-medium tracking-wide">
+          <p className="mt-1 text-sm sm:text-base text-gray-400 font-fredoka font-medium tracking-wide">
             Baking in Progress
           </p>
         </div>
-      ) : (
-        /* Full Screen Looping Hero Video */
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="relative w-full h-full flex items-center justify-center group cursor-pointer"
-        // onClick={handleWatchIntro}
+
+        {/* Mobile Watch Intro Button */}
+        <motion.button
+          onClick={handleWatchIntro}
+          whileTap={{ scale: 0.95 }}
+          className="self-end mr-3 mt-4 flex items-center gap-1.5 text-[#b5b5b5] hover:text-black transition-colors cursor-pointer select-none"
         >
-          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-auto">
-            <iframe
-              title="vimeo-player"
-              src="https://player.vimeo.com/video/1239034191?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1"
-              className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              allowFullScreen
+          <Play className="w-3 h-3 fill-[#b5b5b5]" />
+          <span className="text-xs font-fredoka font-semibold tracking-wide">
+            Watch Intro
+          </span>
+        </motion.button>
+      </div>
+
+      {/* =========================
+          DESKTOP HERO (>= md)
+      ========================== */}
+      <div className="hidden md:flex w-full h-screen min-h-[600px] items-center justify-center overflow-hidden bg-black text-white relative">
+        {!isAnimationComplete ? (
+          /* Starting Frame Animation */
+          <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6 bg-white">
+            <CharacterFrameAnimation
+              frames={startingLogoFrames && startingLogoFrames.length > 0 ? startingLogoFrames : [LogoSecondary]}
+              fps={24}
+              loop={false}
+              onComplete={() => setIsAnimationComplete(true)}
+              className="w-full max-w-lg h-auto object-contain select-none"
             />
-          </div>
-
-          {/* Subtle Overlay gradient for contrast */}
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
-
-          {/* Center Round Play Button (Titmouse reference style) */}
-          {/* <div className="relative z-10 flex flex-col items-center justify-center pointer-events-none">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-black/40 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl group-hover:bg-primary group-hover:border-primary transition-all duration-300"
-            >
-              <Play className="w-9 h-9 sm:w-11 sm:h-11 fill-white ml-1" />
-            </motion.div>
-          </div> */}
-
-          {/* Tagline overlay at bottom left */}
-          <div className="absolute bottom-6 left-6 md:bottom-10 md:left-12 z-20 pointer-events-none">
-            <p className="text-white/80 text-sm sm:text-base font-fredoka font-medium tracking-wide drop-shadow-md">
+            <p className="mt-4 text-lg text-dark-muted font-fredoka font-medium tracking-wide">
               Baking in Progress
             </p>
           </div>
-
-          {/* Layered "Watch Intro" Button at bottom right corner */}
-          <motion.button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleWatchIntro();
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group/btn absolute bottom-6 right-6 md:bottom-10 md:right-12 z-20 flex items-center gap-1 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-[#D9D9D9] hover:text-white transition-all duration-300 cursor-pointer"
+        ) : (
+          /* Full Screen Looping Hero Video */
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="relative w-full h-full flex items-center justify-center group cursor-pointer"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full  group-hover/ group-hover/btn:text-[#D9D9D9]  flex items-center justify-center transition-colors duration-300">
-              <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#D9D9D9] group-hover/btn:fill-[#D9D9D9] ml-0.5" />
+            <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-auto">
+              <iframe
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1239034191?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1"
+                className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowFullScreen
+              />
             </div>
-            <span className=" text-[#D9D9D9]  text-xs sm:text-sm font-fredoka font-semibold tracking-wide">
-              Watch Intro
-            </span>
-          </motion.button>
-        </motion.div>
-      )}
+
+            {/* Subtle Overlay gradient for contrast */}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+
+            {/* Tagline overlay at bottom left */}
+            <div className="absolute bottom-6 left-6 md:bottom-10 md:left-12 z-20 pointer-events-none">
+              <p className="text-white/80 text-sm sm:text-base font-fredoka font-medium tracking-wide drop-shadow-md">
+                Baking in Progress
+              </p>
+            </div>
+
+            {/* Layered "Watch Intro" Button at bottom right corner */}
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleWatchIntro();
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group/btn absolute bottom-6 right-6 md:bottom-10 md:right-12 z-20 flex items-center gap-1 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-[#D9D9D9] hover:text-white transition-all duration-300 cursor-pointer"
+            >
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full group-hover/btn:text-[#D9D9D9] flex items-center justify-center transition-colors duration-300">
+                <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#D9D9D9] group-hover/btn:fill-[#D9D9D9] ml-0.5" />
+              </div>
+              <span className="text-[#D9D9D9] text-xs sm:text-sm font-fredoka font-semibold tracking-wide">
+                Watch Intro
+              </span>
+            </motion.button>
+          </motion.div>
+        )}
+      </div>
 
       {/* Full Video Modal */}
       <AnimatePresence>
